@@ -126,12 +126,23 @@
         visibility: hidden;
         pointer-events: none;
     }
-    /* All content sections fill exactly one viewport minus header */
+    /* All content sections fill exactly one viewport minus header (desktop only) */
     .full-section {
-        min-height: calc(100vh - 80px);
         display: flex;
         flex-direction: column;
         justify-content: center;
+    }
+    @media (min-width: 768px) {
+        .full-section {
+            min-height: calc(100vh - 80px);
+        }
+    }
+    /* On mobile, sections size to content with comfortable vertical padding */
+    @media (max-width: 767px) {
+        .full-section {
+            padding-top: 56px;
+            padding-bottom: 56px;
+        }
     }
 </style>
 </head>
