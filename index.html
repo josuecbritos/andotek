@@ -4,6 +4,17 @@
 <meta charset="utf-8"/>
 <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
 <title>Andotek | Tecnología que nace en la operación</title>
+<meta name="description" content="Andotek crea herramientas digitales que se adaptan a tu operación. Digitalización de mediciones, dashboards en tiempo real, automatización y auditorías. Tecnología que nace en la operación."/>
+<meta property="og:title" content="Andotek | Tecnología que nace en la operación"/>
+<meta property="og:description" content="Creamos herramientas digitales que se adaptan a tu operación, no al revés."/>
+<meta property="og:image" content="https://andotek.cl/og-image.png"/>
+<meta property="og:url" content="https://andotek.cl"/>
+<meta property="og:type" content="website"/>
+<meta property="og:locale" content="es_CL"/>
+<meta name="twitter:card" content="summary_large_image"/>
+<meta name="twitter:title" content="Andotek | Tecnología que nace en la operación"/>
+<meta name="twitter:description" content="Creamos herramientas digitales que se adaptan a tu operación, no al revés."/>
+<meta name="twitter:image" content="https://andotek.cl/og-image.png"/>
 <link rel="icon" type="image/svg+xml" href="favicon.svg"/>
 <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet"/>
@@ -156,7 +167,6 @@
         <a class="font-label-md text-label-md uppercase tracking-wider text-on-surface-variant hover:text-secondary transition-colors duration-200" href="#que-hacemos">Qué hacemos</a>
         <a class="font-label-md text-label-md uppercase tracking-wider text-on-surface-variant hover:text-secondary transition-colors duration-200" href="#como-lo-hacemos">Cómo lo hacemos</a>
         <a class="font-label-md text-label-md uppercase tracking-wider text-on-surface-variant hover:text-secondary transition-colors duration-200" href="#experiencia">Experiencia</a>
-        <a class="font-label-md text-label-md uppercase tracking-wider text-on-surface-variant hover:text-secondary transition-colors duration-200" href="#diagnostico">Diagnóstico</a>
         <a class="ml-4 px-6 py-2 bg-primary text-on-primary font-label-md text-label-md uppercase tracking-widest hover:opacity-80 transition-opacity" href="#contacto">Conversemos</a>
     </div>
     <button class="md:hidden text-primary" onclick="document.getElementById('mobile-menu').classList.toggle('hidden')">
@@ -167,7 +177,6 @@
     <a class="font-label-md text-label-md uppercase tracking-wider text-on-surface" href="#que-hacemos">Qué hacemos</a>
     <a class="font-label-md text-label-md uppercase tracking-wider text-on-surface" href="#como-lo-hacemos">Cómo lo hacemos</a>
     <a class="font-label-md text-label-md uppercase tracking-wider text-on-surface" href="#experiencia">Experiencia</a>
-    <a class="font-label-md text-label-md uppercase tracking-wider text-on-surface" href="#diagnostico">Diagnóstico</a>
     <a class="font-label-md text-label-md uppercase tracking-wider text-on-surface" href="#contacto">Contacto</a>
 </div>
 </header>
@@ -195,7 +204,66 @@
             </div>
         </div>
         <div class="relative hidden md:block">
-            <div class="aspect-[4/3] bg-primary overflow-hidden border border-outline-variant rounded-lg"></div>
+            <div class="aspect-[4/3] overflow-hidden border border-outline-variant rounded-lg p-6 flex flex-col" style="background: #111113;">
+                <!-- Panel header -->
+                <div class="flex items-center justify-between mb-4">
+                    <span class="font-label-sm text-[10px] uppercase tracking-[0.12em]" style="color: #6b6b70;">Línea 2 · Envasado · Turno A</span>
+                    <div class="flex items-center gap-2 rounded px-2.5 py-1" style="background: #12291a; border: 1px solid #1e4a2c;">
+                        <span class="w-1.5 h-1.5 rounded-full animate-pulse" style="background: #4ae176;"></span>
+                        <span class="font-label-sm text-[9px] uppercase tracking-[0.1em]" style="color: #4ae176;">Línea operando</span>
+                    </div>
+                </div>
+                <!-- KPIs -->
+                <div class="grid grid-cols-2 mb-4" style="border-top: 1px solid #26262a; border-bottom: 1px solid #26262a;">
+                    <div class="py-3" style="border-right: 1px solid #26262a;">
+                        <p class="font-label-sm text-[9px] uppercase tracking-[0.08em] mb-1" style="color: #6b6b70;">Producción total</p>
+                        <p class="font-label-md text-[24px] font-medium leading-none" style="color: #f4f4f5;">42.680<span class="text-[12px]" style="color: #6b6b70;"> kg</span></p>
+                    </div>
+                    <div class="py-3 pl-4">
+                        <p class="font-label-sm text-[9px] uppercase tracking-[0.08em] mb-1" style="color: #6b6b70;">Tasa actual</p>
+                        <p class="font-label-md text-[24px] font-medium leading-none" style="color: #fd761a;">1.240<span class="text-[12px]" style="color: #6b6b70;"> kg/h</span></p>
+                    </div>
+                </div>
+                <!-- OEE -->
+                <div class="grid grid-cols-4 gap-3 mb-4">
+                    <div>
+                        <div class="flex justify-between mb-1"><span class="font-label-sm text-[8px] tracking-[0.05em]" style="color: #6b6b70;">DISPONIB.</span><span class="font-label-sm text-[10px]" style="color: #f4f4f5;">92,1%</span></div>
+                        <div class="h-1 rounded-full" style="background: #26262a;"><div class="h-full rounded-full" style="width: 92%; background: #4ae176;"></div></div>
+                    </div>
+                    <div>
+                        <div class="flex justify-between mb-1"><span class="font-label-sm text-[8px] tracking-[0.05em]" style="color: #6b6b70;">RENDIM.</span><span class="font-label-sm text-[10px]" style="color: #f4f4f5;">88,4%</span></div>
+                        <div class="h-1 rounded-full" style="background: #26262a;"><div class="h-full rounded-full" style="width: 88%; background: #f5c518;"></div></div>
+                    </div>
+                    <div>
+                        <div class="flex justify-between mb-1"><span class="font-label-sm text-[8px] tracking-[0.05em]" style="color: #6b6b70;">CALIDAD</span><span class="font-label-sm text-[10px]" style="color: #f4f4f5;">98,7%</span></div>
+                        <div class="h-1 rounded-full" style="background: #26262a;"><div class="h-full rounded-full" style="width: 98%; background: #4ae176;"></div></div>
+                    </div>
+                    <div>
+                        <div class="flex justify-between mb-1"><span class="font-label-sm text-[8px] tracking-[0.05em]" style="color: #fd761a;">OEE</span><span class="font-label-sm text-[10px]" style="color: #fd761a;">80,3%</span></div>
+                        <div class="h-1 rounded-full" style="background: #26262a;"><div class="h-full rounded-full" style="width: 80%; background: #fd761a;"></div></div>
+                    </div>
+                </div>
+                <!-- Chart -->
+                <div class="flex-1 min-h-0">
+                    <svg viewBox="0 0 560 130" class="w-full h-full">
+                        <line x1="0" y1="30" x2="560" y2="30" stroke="#232327" stroke-width="1"/>
+                        <line x1="0" y1="58" x2="560" y2="58" stroke="#232327" stroke-width="1"/>
+                        <line x1="0" y1="86" x2="560" y2="86" stroke="#232327" stroke-width="1"/>
+                        <!-- Meta line + label -->
+                        <line x1="0" y1="64" x2="560" y2="64" stroke="#fd761a" stroke-width="1" stroke-dasharray="4 5" opacity="0.5"/>
+                        <text x="4" y="59" font-family="JetBrains Mono, monospace" font-size="11" fill="#a56a42">Meta 1.100 kg/h</text>
+                        <!-- Production line -->
+                        <path d="M12,96 L80,86 L148,89 L216,71 L284,77 L352,58 L420,65 L488,48 L548,40" fill="none" stroke="#fd761a" stroke-width="2.5" stroke-linejoin="round"/>
+                        <!-- Current point + value -->
+                        <circle cx="548" cy="40" r="4.5" fill="#fd761a"/>
+                        <text x="548" y="26" text-anchor="end" font-family="JetBrains Mono, monospace" font-size="12" font-weight="500" fill="#f4f4f5">1.240 kg/h</text>
+                        <!-- Hour axis -->
+                        <text x="12" y="122" font-family="JetBrains Mono, monospace" font-size="11" fill="#6b6b70">08:00</text>
+                        <text x="284" y="122" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="11" fill="#6b6b70">12:00</text>
+                        <text x="548" y="122" text-anchor="end" font-family="JetBrains Mono, monospace" font-size="11" fill="#fd761a">16:00</text>
+                    </svg>
+                </div>
+            </div>
             <div class="absolute -bottom-6 -left-6 bg-secondary text-on-secondary p-8 shadow-xl">
                 <p class="font-headline-lg text-headline-lg font-bold">+15 años</p>
                 <p class="font-label-sm text-label-sm opacity-80">liderando mejoras operacionales</p>
@@ -314,68 +382,6 @@
 </div>
 </section>
 
-<!-- DIAGNÓSTICO -->
-<span class="scroll-anchor" id="diagnostico"></span>
-<section class="full-section bg-white">
-<div class="max-w-max-width mx-auto px-margin-mobile md:px-margin-desktop">
-    <div class="bg-surface border border-outline-variant p-8 md:p-12 flex flex-col md:flex-row items-center gap-12">
-        <div class="w-full md:w-1/2">
-            <h2 class="font-headline-lg text-headline-lg mb-4">¿Qué tan madura es tu operación?</h2>
-            <p class="font-body-md text-body-md text-on-surface-variant mb-6">Responde un diagnóstico rápido y recibe un reporte con el nivel de madurez operacional de tu empresa en 5 dimensiones clave.</p>
-            <div class="space-y-3 mb-8">
-                <div class="flex items-center gap-3 text-on-surface">
-                    <span class="w-7 h-7 rounded-full bg-secondary-container text-on-secondary-container flex items-center justify-center font-label-sm text-[11px]">1</span>
-                    <span class="font-body-md text-[14px]">Visibilidad de resultados</span>
-                </div>
-                <div class="flex items-center gap-3 text-on-surface">
-                    <span class="w-7 h-7 rounded-full bg-secondary-container text-on-secondary-container flex items-center justify-center font-label-sm text-[11px]">2</span>
-                    <span class="font-body-md text-[14px]">Estandarización de procesos</span>
-                </div>
-                <div class="flex items-center gap-3 text-on-surface">
-                    <span class="w-7 h-7 rounded-full bg-secondary-container text-on-secondary-container flex items-center justify-center font-label-sm text-[11px]">3</span>
-                    <span class="font-body-md text-[14px]">Gestión de mantenimiento</span>
-                </div>
-                <div class="flex items-center gap-3 text-on-surface">
-                    <span class="w-7 h-7 rounded-full bg-secondary-container text-on-secondary-container flex items-center justify-center font-label-sm text-[11px]">4</span>
-                    <span class="font-body-md text-[14px]">Digitalización</span>
-                </div>
-                <div class="flex items-center gap-3 text-on-surface">
-                    <span class="w-7 h-7 rounded-full bg-secondary-container text-on-secondary-container flex items-center justify-center font-label-sm text-[11px]">5</span>
-                    <span class="font-body-md text-[14px]">Mejora continua</span>
-                </div>
-            </div>
-            <button class="w-full md:w-auto px-10 py-4 bg-secondary text-on-secondary font-label-md text-label-md uppercase tracking-[0.2em] shadow-lg hover:brightness-110 transition-all" onclick="alert('Próximamente: diagnóstico de madurez operacional.')">
-                Hacer el diagnóstico
-            </button>
-        </div>
-        <div class="w-full md:w-1/2 relative">
-            <div class="aspect-video bg-inverse-surface flex items-center justify-center border border-outline p-4">
-                <div class="w-full h-full flex flex-col justify-between p-4 border border-outline-variant/20 relative">
-                    <div class="absolute inset-0 technical-grid opacity-10"></div>
-                    <div class="relative z-10 flex flex-col items-center justify-center h-full gap-3">
-                        <svg viewBox="0 0 200 200" class="w-28 h-28 opacity-60">
-                            <polygon points="100,20 180,75 155,160 45,160 20,75" fill="none" stroke="#76777b" stroke-width="0.5"/>
-                            <polygon points="100,45 158,85 140,145 60,145 42,85" fill="none" stroke="#76777b" stroke-width="0.5"/>
-                            <polygon points="100,70 136,95 125,130 75,130 64,95" fill="none" stroke="#76777b" stroke-width="0.5"/>
-                            <polygon points="100,35 165,80 130,150 55,140 35,78" fill="#fd761a" fill-opacity="0.2" stroke="#fd761a" stroke-width="1.5"/>
-                            <circle cx="100" cy="35" r="3" fill="#fd761a"/>
-                            <circle cx="165" cy="80" r="3" fill="#fd761a"/>
-                            <circle cx="130" cy="150" r="3" fill="#fd761a"/>
-                            <circle cx="55" cy="140" r="3" fill="#fd761a"/>
-                            <circle cx="35" cy="78" r="3" fill="#fd761a"/>
-                        </svg>
-                    </div>
-                    <div class="mt-2 border-t border-outline-variant/20 pt-2 flex justify-between relative z-10">
-                        <span class="text-[8px] text-outline uppercase tracking-tighter">Maturity Report</span>
-                        <span class="text-[8px] text-outline uppercase tracking-tighter">Andotek Diagnostic</span>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
-</section>
-
 <!-- CONTACTO -->
 <span class="scroll-anchor" id="contacto"></span>
 <section class="full-section bg-surface border-t border-outline-variant">
@@ -405,24 +411,29 @@
         </div>
     </div>
     <div class="bg-white border border-outline-variant p-6 md:p-8 shadow-sm">
-        <div class="space-y-4">
+        <div class="space-y-4" id="contactForm">
             <div class="space-y-1">
                 <label class="font-label-md text-label-md uppercase text-industrial-gray text-[12px]">Nombre</label>
-                <input class="w-full border-b border-outline-variant focus:border-primary focus:ring-0 pl-2 py-2 font-body-md text-[14px] transition-colors bg-transparent" placeholder="  Tu nombre completo" type="text"/>
+                <input id="cfNombre" class="w-full border-b border-outline-variant focus:border-primary focus:ring-0 pl-2 py-2 font-body-md text-[14px] transition-colors bg-transparent" placeholder="  Tu nombre completo" type="text"/>
             </div>
             <div class="space-y-1">
                 <label class="font-label-md text-label-md uppercase text-industrial-gray text-[12px]">Empresa</label>
-                <input class="w-full border-b border-outline-variant focus:border-primary focus:ring-0 pl-2 py-2 font-body-md text-[14px] transition-colors bg-transparent" placeholder="  Nombre de tu empresa" type="text"/>
+                <input id="cfEmpresa" class="w-full border-b border-outline-variant focus:border-primary focus:ring-0 pl-2 py-2 font-body-md text-[14px] transition-colors bg-transparent" placeholder="  Nombre de tu empresa" type="text"/>
             </div>
             <div class="space-y-1">
                 <label class="font-label-md text-label-md uppercase text-industrial-gray text-[12px]">Email</label>
-                <input class="w-full border-b border-outline-variant focus:border-primary focus:ring-0 pl-2 py-2 font-body-md text-[14px] transition-colors bg-transparent" placeholder="  correo@empresa.com" type="email"/>
+                <input id="cfEmail" class="w-full border-b border-outline-variant focus:border-primary focus:ring-0 pl-2 py-2 font-body-md text-[14px] transition-colors bg-transparent" placeholder="  correo@empresa.com" type="email"/>
             </div>
             <div class="space-y-1">
                 <label class="font-label-md text-label-md uppercase text-industrial-gray text-[12px]">Cuéntanos en qué te podemos ayudar</label>
-                <textarea class="w-full border border-outline-variant focus:border-primary focus:ring-0 p-3 font-body-md text-[14px] transition-colors resize-none bg-transparent" placeholder="  Escríbenos brevemente..." rows="3"></textarea>
+                <textarea id="cfMensaje" class="w-full border border-outline-variant focus:border-primary focus:ring-0 p-3 font-body-md text-[14px] transition-colors resize-none bg-transparent" placeholder="  Escríbenos brevemente..." rows="3"></textarea>
             </div>
-            <button class="w-full py-4 bg-primary text-on-primary font-label-md text-label-md uppercase tracking-[0.2em] hover:opacity-90 transition-opacity" type="button">Enviar mensaje</button>
+            <button id="cfBtn" class="w-full py-4 bg-primary text-on-primary font-label-md text-label-md uppercase tracking-[0.2em] hover:opacity-90 transition-opacity" type="button">Enviar mensaje</button>
+            <p id="cfError" class="hidden text-[13px] text-red-600">Hubo un problema al enviar. Intenta de nuevo o escríbenos directo a contacto@andotek.cl</p>
+        </div>
+        <div class="hidden text-center py-12" id="contactSuccess">
+            <p class="font-headline-lg text-[22px] font-semibold text-primary mb-2">¡Mensaje enviado!</p>
+            <p class="font-body-md text-[14px] text-on-surface-variant">Gracias por escribirnos. Te contactaremos pronto.</p>
         </div>
     </div>
 </div>
@@ -442,7 +453,6 @@
         <a class="font-label-sm text-label-sm text-on-surface-variant hover:text-primary underline transition-all" href="#que-hacemos">Qué hacemos</a>
         <a class="font-label-sm text-label-sm text-on-surface-variant hover:text-primary underline transition-all" href="#como-lo-hacemos">Cómo lo hacemos</a>
         <a class="font-label-sm text-label-sm text-on-surface-variant hover:text-primary underline transition-all" href="#experiencia">Experiencia</a>
-        <a class="font-label-sm text-label-sm text-on-surface-variant hover:text-primary underline transition-all" href="#diagnostico">Diagnóstico</a>
     </div>
     <div class="flex flex-col gap-4">
         <h6 class="font-label-md text-label-md uppercase text-primary font-bold mb-2">Contacto</h6>
@@ -453,5 +463,55 @@
 </div>
 </footer>
 
+<script>
+// Contact form → Formspree
+const FORMSPREE_ENDPOINT = 'https://formspree.io/f/xlgyogyb';
+
+document.getElementById('cfBtn').addEventListener('click', async () => {
+    const nombre = document.getElementById('cfNombre').value.trim();
+    const empresa = document.getElementById('cfEmpresa').value.trim();
+    const email = document.getElementById('cfEmail').value.trim();
+    const mensaje = document.getElementById('cfMensaje').value.trim();
+    const errorEl = document.getElementById('cfError');
+    const btn = document.getElementById('cfBtn');
+
+    errorEl.classList.add('hidden');
+
+    if (!nombre || !email) {
+        errorEl.textContent = 'Por favor completa al menos tu nombre y email.';
+        errorEl.classList.remove('hidden');
+        return;
+    }
+
+    btn.disabled = true;
+    btn.textContent = 'Enviando...';
+
+    try {
+        const res = await fetch(FORMSPREE_ENDPOINT, {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
+            body: JSON.stringify({
+                origen: 'Contacto',
+                _subject: `Nuevo contacto web: ${nombre}`,
+                nombre: nombre,
+                empresa: empresa,
+                email: email,
+                mensaje: mensaje
+            })
+        });
+        if (res.ok) {
+            document.getElementById('contactForm').classList.add('hidden');
+            document.getElementById('contactSuccess').classList.remove('hidden');
+        } else {
+            throw new Error('Formspree error');
+        }
+    } catch (err) {
+        errorEl.textContent = 'Hubo un problema al enviar. Intenta de nuevo o escríbenos directo a contacto@andotek.cl';
+        errorEl.classList.remove('hidden');
+        btn.disabled = false;
+        btn.textContent = 'Enviar mensaje';
+    }
+});
+</script>
 </body>
 </html>
