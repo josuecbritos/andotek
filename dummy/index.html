@@ -1,0 +1,733 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Andotek | Tecnología que nace en la operación</title>
+<meta name="description" content="Andotek crea herramientas digitales que se adaptan a tu operación. Digitalización de mediciones, dashboards en tiempo real, automatización y auditorías. Tecnología que nace en la operación."/>
+<meta property="og:title" content="Andotek | Tecnología que nace en la operación"/>
+<meta property="og:description" content="Creamos herramientas digitales que se adaptan a tu operación, no al revés."/>
+<meta property="og:image" content="https://andotek.cl/og-image.png"/>
+<meta property="og:image:width" content="1200"/>
+<meta property="og:image:height" content="630"/>
+<meta property="og:url" content="https://andotek.cl"/>
+<meta property="og:type" content="website"/>
+<meta property="og:locale" content="es_CL"/>
+<meta name="twitter:card" content="summary_large_image"/>
+<meta name="twitter:title" content="Andotek | Tecnología que nace en la operación"/>
+<meta name="twitter:description" content="Creamos herramientas digitales que se adaptan a tu operación, no al revés."/>
+<meta name="twitter:image" content="https://andotek.cl/og-image.png"/>
+<link rel="icon" type="image/svg+xml" href="favicon.svg"/>
+<link rel="stylesheet" href="styles.css"/>
+<style>
+/* Capa de movimiento "Precision, no espectaculo".
+   Inline porque estas clases las usa el script y Tailwind las purgaria. */
+html.lenis, html.lenis body { height: auto; }
+/* Suavizado nativo solo donde no actua Lenis; en desktop se pelearian
+   por la posicion y el desplazamiento se corta a medio camino. */
+@media (max-width: 767px) { html { scroll-behavior: smooth; } }
+.lenis.lenis-smooth { scroll-behavior: auto !important; }
+
+/* Latido visible del indicador "Linea operando" (el pulso por defecto
+   de Tailwind solo baja al 50% y apenas se percibe) */
+@keyframes chipPulse { 0%, 100% { opacity: 1; } 50% { opacity: 0.25; } }
+#lineChip .animate-pulse { animation: chipPulse 1.6s ease-in-out infinite; }
+
+/* Micro-interaccion al hover (solo dispositivos con cursor) */
+@media (hover: hover) {
+  .lift { transition: transform .2s ease, box-shadow .2s ease, border-color .2s ease; }
+  .lift:hover { transform: translateY(-2px); box-shadow: 0 8px 24px rgba(0,0,0,.08); }
+}
+</style>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
+</head>
+<body class="bg-surface text-on-surface font-body-md selection:bg-secondary-container selection:text-on-secondary-container">
+
+<!-- TopNavBar -->
+<header class="fixed top-0 w-full bg-surface/90 backdrop-blur-md z-50 border-b border-outline-variant">
+<nav class="flex justify-between items-center h-20 px-margin-mobile md:px-margin-desktop max-w-max-width mx-auto">
+    <a href="#" class="text-headline-lg font-headline-lg font-bold text-primary">Ando<span class="text-secondary-container">tek</span></a>
+    <div class="hidden md:flex items-center gap-8">
+        <a class="font-label-md text-label-md uppercase tracking-wider text-on-surface-variant hover:text-secondary transition-colors duration-200" href="#que-hacemos">Qué hacemos</a>
+        <a class="font-label-md text-label-md uppercase tracking-wider text-on-surface-variant hover:text-secondary transition-colors duration-200" href="#quien">Quiénes somos</a>
+        <a class="font-label-md text-label-md uppercase tracking-wider text-on-surface-variant hover:text-secondary transition-colors duration-200" href="#experiencia">Experiencia</a>
+        <a class="ml-4 px-6 py-2 bg-primary text-on-primary font-label-md text-label-md uppercase tracking-widest hover:opacity-80 transition-opacity" href="#contacto">Conversemos</a>
+    </div>
+    <button class="md:hidden text-primary" onclick="document.getElementById('mobile-menu').classList.toggle('hidden')">
+        <span class="material-symbols-outlined">menu</span>
+    </button>
+</nav>
+<div class="hidden md:hidden bg-surface border-b border-outline-variant px-margin-mobile py-8 flex flex-col gap-6" id="mobile-menu">
+    <a class="font-label-md text-label-md uppercase tracking-wider text-on-surface" href="#que-hacemos">Qué hacemos</a>
+    <a class="font-label-md text-label-md uppercase tracking-wider text-on-surface" href="#quien">Quiénes somos</a>
+    <a class="font-label-md text-label-md uppercase tracking-wider text-on-surface" href="#experiencia">Experiencia</a>
+    <a class="font-label-md text-label-md uppercase tracking-wider text-on-surface" href="#contacto">Contacto</a>
+</div>
+</header>
+
+<main>
+
+<!-- HERO -->
+<section id="hero" class="full-section bg-surface relative overflow-hidden border-b border-outline-variant">
+    <div class="sec-inner max-w-max-width mx-auto px-margin-mobile md:px-margin-desktop grid grid-cols-1 md:grid-cols-2 gap-gutter items-center relative py-8">
+        <div class="space-y-6">
+            <h1 class="font-headline-xl text-headline-xl text-primary leading-tight fade-in fade-in-delay-1">
+                Ando<span class="text-secondary-container">tek</span>
+                <span class="block text-industrial-gray font-headline-lg mt-2 italic">Tecnología que nace en la operación.</span>
+            </h1>
+            <p class="font-label-md text-label-md uppercase tracking-[0.2em] text-secondary fade-in fade-in-delay-2">Ve · Mide · Mejora</p>
+            <p class="font-body-lg text-body-lg text-on-surface-variant max-w-lg fade-in fade-in-delay-3">
+                Creamos herramientas digitales que se adaptan a tu operación, no al revés.
+            </p>
+            <div class="pt-2 fade-in fade-in-delay-4">
+                <a class="inline-flex items-center gap-4 px-10 py-4 bg-primary text-on-primary font-label-md text-label-md uppercase tracking-[0.2em] hover:bg-on-primary-fixed-variant transition-all group" href="#contacto">
+                    Conversemos
+                    <span class="material-symbols-outlined group-hover:translate-x-1 transition-transform">arrow_forward</span>
+                </a>
+            </div>
+        </div>
+        <div class="relative hidden md:block">
+            <div data-drift="-26" class="aspect-[4/3] overflow-hidden border border-outline-variant rounded-lg p-6 flex flex-col" style="background: #111113;">
+                <!-- Panel header -->
+                <div class="flex items-center justify-between mb-4">
+                    <span class="font-label-sm text-[10px] uppercase tracking-[0.12em]" style="color: #6b6b70;">Línea 2 · Envasado · Turno A</span>
+                    <div id="lineChip" class="flex items-center gap-2 rounded px-2.5 py-1" style="background: #12291a; border: 1px solid #1e4a2c;">
+                        <span class="w-1.5 h-1.5 rounded-full animate-pulse" style="background: #4ae176;"></span>
+                        <span class="font-label-sm text-[9px] uppercase tracking-[0.1em]" style="color: #4ae176;">Línea operando</span>
+                    </div>
+                </div>
+                <!-- KPIs -->
+                <div class="grid grid-cols-2 mb-4" style="border-top: 1px solid #26262a; border-bottom: 1px solid #26262a;">
+                    <div class="py-3" style="border-right: 1px solid #26262a;">
+                        <p class="font-label-sm text-[9px] uppercase tracking-[0.08em] mb-1" style="color: #6b6b70;">Producción total</p>
+                        <p class="font-label-md text-[24px] font-medium leading-none" style="color: #f4f4f5;"><span class="count" data-target="42680">42.680</span><span class="text-[12px]" style="color: #6b6b70;"> kg</span></p>
+                    </div>
+                    <div class="py-3 pl-4">
+                        <p class="font-label-sm text-[9px] uppercase tracking-[0.08em] mb-1" style="color: #6b6b70;">Tasa actual</p>
+                        <p class="font-label-md text-[24px] font-medium leading-none" style="color: #fd761a;"><span class="count" data-target="1240">1.240</span><span class="text-[12px]" style="color: #6b6b70;"> kg/h</span></p>
+                    </div>
+                </div>
+                <!-- OEE -->
+                <div class="grid grid-cols-4 gap-3 mb-4">
+                    <div>
+                        <div class="flex justify-between mb-1"><span class="font-label-sm text-[8px] tracking-[0.05em]" style="color: #6b6b70;">DISPONIB.</span><span class="font-label-sm text-[10px]" style="color: #f4f4f5;">92,1%</span></div>
+                        <div class="h-1 rounded-full" style="background: #26262a;"><div class="h-full rounded-full oee-fill" style="width: 92%; background: #4ae176;"></div></div>
+                    </div>
+                    <div>
+                        <div class="flex justify-between mb-1"><span class="font-label-sm text-[8px] tracking-[0.05em]" style="color: #6b6b70;">RENDIM.</span><span class="font-label-sm text-[10px]" style="color: #f4f4f5;">88,4%</span></div>
+                        <div class="h-1 rounded-full" style="background: #26262a;"><div class="h-full rounded-full oee-fill" style="width: 88%; background: #f5c518;"></div></div>
+                    </div>
+                    <div>
+                        <div class="flex justify-between mb-1"><span class="font-label-sm text-[8px] tracking-[0.05em]" style="color: #6b6b70;">CALIDAD</span><span class="font-label-sm text-[10px]" style="color: #f4f4f5;">98,7%</span></div>
+                        <div class="h-1 rounded-full" style="background: #26262a;"><div class="h-full rounded-full oee-fill" style="width: 98%; background: #4ae176;"></div></div>
+                    </div>
+                    <div>
+                        <div class="flex justify-between mb-1"><span class="font-label-sm text-[8px] tracking-[0.05em]" style="color: #fd761a;">OEE</span><span class="font-label-sm text-[10px]" style="color: #fd761a;">80,3%</span></div>
+                        <div class="h-1 rounded-full" style="background: #26262a;"><div class="h-full rounded-full oee-fill" style="width: 80%; background: #fd761a;"></div></div>
+                    </div>
+                </div>
+                <!-- Chart -->
+                <div class="flex-1 min-h-0">
+                    <svg viewBox="0 0 560 130" class="w-full h-full">
+                        <line x1="0" y1="30" x2="560" y2="30" stroke="#232327" stroke-width="1"/>
+                        <line x1="0" y1="58" x2="560" y2="58" stroke="#232327" stroke-width="1"/>
+                        <line x1="0" y1="86" x2="560" y2="86" stroke="#232327" stroke-width="1"/>
+                        <!-- Meta line + label -->
+                        <line id="heroMeta" x1="0" y1="64" x2="560" y2="64" stroke="#fd761a" stroke-width="1" stroke-dasharray="4 5" opacity="0.5"/>
+                        <text id="heroMetaLbl" x="4" y="59" font-family="JetBrains Mono, monospace" font-size="11" fill="#a56a42">Meta 1.100 kg/h</text>
+                        <!-- Production line -->
+                        <path id="heroPath" d="M12,96 L80,86 L148,89 L216,71 L284,77 L352,58 L420,65 L488,48 L548,40" fill="none" stroke="#fd761a" stroke-width="2.5" stroke-linejoin="round"/>
+                        <!-- Current point + value -->
+                        <circle id="heroDot" cx="548" cy="40" r="4.5" fill="#fd761a"/>
+                        <text id="heroPeak" x="548" y="26" text-anchor="end" font-family="JetBrains Mono, monospace" font-size="12" font-weight="500" fill="#f4f4f5">1.240 kg/h</text>
+                        <!-- Hour axis -->
+                        <text x="12" y="122" font-family="JetBrains Mono, monospace" font-size="11" fill="#6b6b70">08:00</text>
+                        <text x="284" y="122" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="11" fill="#6b6b70">12:00</text>
+                        <text x="548" y="122" text-anchor="end" font-family="JetBrains Mono, monospace" font-size="11" fill="#fd761a">16:00</text>
+                    </svg>
+                </div>
+            </div>
+            <div data-drift="30" class="absolute -bottom-6 -left-6 bg-secondary text-on-secondary p-8 shadow-xl">
+                <p class="font-headline-lg text-headline-lg font-bold">+15 años</p>
+                <p class="font-label-sm text-label-sm opacity-80">liderando mejoras operacionales</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- QUÉ HACEMOS -->
+<section id="que-hacemos" class="full-section bg-white border-b border-outline-variant">
+<div class="max-w-max-width mx-auto px-margin-mobile md:px-margin-desktop sec-inner">
+    <div class="max-w-3xl mb-6">
+        <h2 class="font-headline-lg text-headline-lg text-primary mb-2">Creamos herramientas digitales que se adaptan a tu operación, no al revés.</h2>
+        <p class="font-body-md text-[14px] text-on-surface-variant">Cada operación es distinta. Por eso no vendemos software genérico: diseñamos y construimos soluciones a la medida que resuelven problemas reales de gestión operacional.</p>
+    </div>
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+        <div class="lift border border-outline-variant px-6 py-5 hover:border-secondary transition-colors group flex gap-5 items-start">
+            <span class="material-symbols-outlined text-2xl text-secondary mt-1 shrink-0">sensors</span>
+            <div>
+                <h3 class="font-headline-lg text-[18px] font-semibold mb-1">Digitalización de mediciones</h3>
+                <p class="font-body-md text-[13px] text-on-surface-variant leading-relaxed">Digitaliza tus registros manuales y visualiza resultados en tiempo real. Nos integramos con tus sistemas y sensores.</p>
+            </div>
+        </div>
+        <div class="lift border border-outline-variant px-6 py-5 hover:border-secondary transition-colors group flex gap-5 items-start">
+            <span class="material-symbols-outlined text-2xl text-secondary mt-1 shrink-0">dashboard</span>
+            <div>
+                <h3 class="font-headline-lg text-[18px] font-semibold mb-1">Dashboards operacionales en tiempo real</h3>
+                <p class="font-body-md text-[13px] text-on-surface-variant leading-relaxed">Ve el desempeño de tu planta, tienda o equipo en el momento, no al final del mes.</p>
+            </div>
+        </div>
+        <div class="lift border border-outline-variant px-6 py-5 hover:border-secondary transition-colors group flex gap-5 items-start">
+            <span class="material-symbols-outlined text-2xl text-secondary mt-1 shrink-0">settings_suggest</span>
+            <div>
+                <h3 class="font-headline-lg text-[18px] font-semibold mb-1">Automatización de gestión e inteligencia artificial</h3>
+                <p class="font-body-md text-[13px] text-on-surface-variant leading-relaxed">Reemplaza planillas, WhatsApp y procesos manuales por sistemas y automatizaciones inteligentes que se ejecutan solas, de forma consistente.</p>
+            </div>
+        </div>
+        <div class="lift border border-outline-variant px-6 py-5 hover:border-secondary transition-colors group flex gap-5 items-start">
+            <span class="material-symbols-outlined text-2xl text-secondary mt-1 shrink-0">checklist</span>
+            <div>
+                <h3 class="font-headline-lg text-[18px] font-semibold mb-1">Checklists y auditorías digitales</h3>
+                <p class="font-body-md text-[13px] text-on-surface-variant leading-relaxed">5S, auditorías de proceso, inspecciones de calidad. Estandariza, mide en terreno y ve resultados en tiempo real.</p>
+            </div>
+        </div>
+    </div>
+</div>
+</section>
+
+<!-- CÓMO LO HACEMOS -->
+<section id="como-lo-hacemos" class="full-section bg-primary text-on-primary">
+<div class="max-w-max-width mx-auto px-margin-mobile md:px-margin-desktop sec-inner relative">
+    <div class="mb-12">
+        <h2 class="font-headline-lg text-headline-lg mb-4"><span class="text-secondary-container">Partimos en terreno.</span> Después programamos.</h2>
+        <p class="font-body-lg text-body-lg text-outline-variant max-w-2xl">No somos una fábrica de software que necesita que le expliques tu negocio. Venimos de años en terreno liderando proyectos operacionales en manufactura, retail, aerolíneas y logística. Entendemos los problemas porque los hemos vivido.</p>
+    </div>
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-10">
+        <div class="relative">
+            <div class="w-14 h-14 border-2 border-white flex items-center justify-center mb-6">
+                <span class="font-label-md text-headline-lg text-secondary-container">01</span>
+            </div>
+            <h4 class="font-headline-lg text-headline-lg mb-3">Entendemos tu operación</h4>
+            <p class="font-body-md text-outline-variant">Vamos a terreno. Observamos. Diagnosticamos. Identificamos dónde la tecnología puede generar mayor impacto.</p>
+        </div>
+        <div class="relative">
+            <div class="w-14 h-14 border-2 border-white flex items-center justify-center mb-6">
+                <span class="font-label-md text-headline-lg text-secondary-container">02</span>
+            </div>
+            <h4 class="font-headline-lg text-headline-lg mb-3">Diseñamos y construimos</h4>
+            <p class="font-body-md text-outline-variant">Creamos una solución a tu medida: simple, visual, que tu equipo pueda usar desde el día uno.</p>
+        </div>
+        <div class="relative">
+            <div class="w-14 h-14 border-2 border-white flex items-center justify-center mb-6">
+                <span class="font-label-md text-headline-lg text-secondary-container">03</span>
+            </div>
+            <h4 class="font-headline-lg text-headline-lg mb-3">Iteramos y mejoramos contigo</h4>
+            <p class="font-body-md text-outline-variant">La herramienta evoluciona con tu operación. Mejora continua aplicada al producto, no solo al proceso.</p>
+        </div>
+    </div>
+</div>
+</section>
+
+<!-- QUIÉN ESTÁ DETRÁS -->
+<section id="quien" class="full-section bg-white border-b border-outline-variant">
+<div class="max-w-max-width mx-auto px-margin-mobile md:px-margin-desktop sec-inner">
+    <div class="flex flex-col md:flex-row gap-10 md:gap-16 items-start">
+        <!-- Foto -->
+        <div class="shrink-0">
+            <img data-drift="-18" src="josue-foto.jpg" alt="Josué Brito, fundador de Andotek" class="w-[130px] md:w-[170px] rounded-lg border border-outline-variant"/>
+        </div>
+        <!-- Bio -->
+        <div class="flex-1">
+            <h2 class="font-headline-lg text-headline-lg text-primary mb-2">Quiénes somos</h2>
+            <div class="flex items-baseline gap-3 mb-5">
+                <span class="font-headline-lg text-[20px] font-semibold text-primary">Josué Brito</span>
+                <span class="font-label-sm text-label-sm uppercase tracking-widest text-secondary">Fundador</span>
+            </div>
+            <p class="font-body-md text-body-md text-on-surface-variant mb-4">
+                Ingeniero Civil Industrial de la Pontificia Universidad Católica de Chile. Más de 15 años liderando proyectos operacionales en aerolíneas, manufactura, retail, logística y forestal, en Chile y Sudamérica.
+            </p>
+            <p class="font-body-md text-body-md text-on-surface-variant mb-6">
+                Desde el primer día construyó las herramientas que sus proyectos necesitaban: sistemas de control de operaciones, paneles de KPIs, automatizaciones. Andotek nace de esa experiencia: entender la operación primero, y construir la tecnología que la hace visible, medible y mejor.
+            </p>
+            <blockquote class="border-l-2 border-secondary pl-5 py-1 mb-7">
+                <p class="font-body-md text-[15px] italic text-on-surface leading-relaxed">Las mejores herramientas no se diseñan en una oficina: se descubren en terreno.</p>
+            </blockquote>
+            <a href="https://www.linkedin.com/in/josue-brito-mejora-continua/" target="_blank" rel="noopener" class="inline-flex items-center gap-2 font-label-md text-label-md uppercase tracking-wider text-on-surface-variant hover:text-secondary transition-colors border-b border-outline-variant hover:border-secondary pb-1">
+                LinkedIn
+                <span class="material-symbols-outlined text-[16px]">north_east</span>
+            </a>
+        </div>
+    </div>
+</div>
+</section>
+
+<!-- TESTIMONIOS -->
+<section id="testimonios" class="full-section bg-surface border-b border-outline-variant">
+<div class="max-w-max-width mx-auto px-margin-mobile md:px-margin-desktop sec-inner">
+    <div class="max-w-2xl mb-10">
+        <h2 class="font-headline-lg text-headline-lg text-primary mb-3">Lo que dicen quienes ya trabajaron con nosotros</h2>
+        <p class="font-body-md text-body-md text-on-surface-variant">Resultados reales en operaciones reales.</p>
+    </div>
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-gutter">
+
+        <!-- Testimonio 1 -->
+        <div class="lift bg-white border border-outline-variant p-7 flex flex-col">
+            <div class="font-label-md text-[40px] leading-[0.6] text-secondary mb-3" aria-hidden="true">“</div>
+            <p class="font-body-md text-[15px] text-on-surface leading-relaxed flex-1">"[EJEMPLO — reemplazar] Antes revisábamos la producción al día siguiente, con planillas que nunca cuadraban. Hoy el equipo ve el avance del turno en tiempo real y corrige en el momento. Dejamos de apagar incendios."</p>
+            <div class="flex items-center gap-3 mt-6 pt-5 border-t border-outline-variant">
+                <div class="w-10 h-10 rounded-full bg-primary text-on-primary flex items-center justify-center font-label-sm text-[13px] shrink-0">MR</div>
+                <div>
+                    <p class="font-body-md text-[14px] font-semibold text-primary leading-tight">Nombre Apellido</p>
+                    <p class="font-label-sm text-label-sm text-industrial-gray">Cargo · Empresa</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Testimonio 2 -->
+        <div class="lift bg-white border border-outline-variant p-7 flex flex-col">
+            <div class="font-label-md text-[40px] leading-[0.6] text-secondary mb-3" aria-hidden="true">“</div>
+            <p class="font-body-md text-[15px] text-on-surface leading-relaxed flex-1">"[EJEMPLO — reemplazar] Lo que lo hace distinto es que primero fue a terreno a entender cómo trabajábamos. La herramienta salió a la medida de nuestro proceso, no al revés. El equipo la adoptó desde la primera semana."</p>
+            <div class="flex items-center gap-3 mt-6 pt-5 border-t border-outline-variant">
+                <div class="w-10 h-10 rounded-full bg-primary text-on-primary flex items-center justify-center font-label-sm text-[13px] shrink-0">JS</div>
+                <div>
+                    <p class="font-body-md text-[14px] font-semibold text-primary leading-tight">Nombre Apellido</p>
+                    <p class="font-label-sm text-label-sm text-industrial-gray">Cargo · Empresa</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Testimonio 3 -->
+        <div class="lift bg-white border border-outline-variant p-7 flex flex-col">
+            <div class="font-label-md text-[40px] leading-[0.6] text-secondary mb-3" aria-hidden="true">“</div>
+            <p class="font-body-md text-[15px] text-on-surface leading-relaxed flex-1">"[EJEMPLO — reemplazar] Reemplazamos tres planillas y un grupo de WhatsApp por un solo sistema. Ahorramos cerca de seis horas semanales de trabajo administrativo y ahora sabemos exactamente dónde está cada pendiente."</p>
+            <div class="flex items-center gap-3 mt-6 pt-5 border-t border-outline-variant">
+                <div class="w-10 h-10 rounded-full bg-primary text-on-primary flex items-center justify-center font-label-sm text-[13px] shrink-0">CP</div>
+                <div>
+                    <p class="font-body-md text-[14px] font-semibold text-primary leading-tight">Nombre Apellido</p>
+                    <p class="font-label-sm text-label-sm text-industrial-gray">Cargo · Empresa</p>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>
+</section>
+
+<!-- EXPERIENCIA -->
+<section id="experiencia" class="full-section bg-primary text-on-primary">
+<div class="max-w-max-width mx-auto px-margin-mobile md:px-margin-desktop sec-inner">
+    <div class="flex flex-col md:flex-row gap-16 items-start">
+        <div class="md:sticky md:top-32 w-full md:w-1/3">
+            <h2 class="font-headline-lg text-headline-lg mb-6">Más de 15 años resolviendo problemas operacionales</h2>
+            <p class="font-body-lg text-body-lg text-outline-variant mb-8">Hemos trabajado con operaciones de distintos tamaños e industrias. Cada proyecto nos dejó aprendizajes que hoy están en nuestras soluciones.</p>
+            <div class="h-1 bg-secondary w-24"></div>
+        </div>
+        <div class="w-full md:w-2/3 grid grid-cols-1 gap-4">
+            <div class="group border-b border-outline/30 py-6 hover:bg-surface-container-highest/10 transition-all px-4">
+                <div class="flex justify-between items-center mb-2">
+                    <span class="font-label-sm text-label-sm text-secondary uppercase tracking-widest">Manufactura</span>
+                </div>
+                <p class="font-body-md text-outline-variant">Sistemas de gestión de mantenimiento preventivo y correctivo, herramientas de planificación de la producción, herramientas de control de inventario, reportería en tiempo real, control de hitos.</p>
+            </div>
+            <div class="group border-b border-outline/30 py-6 hover:bg-surface-container-highest/10 transition-all px-4">
+                <div class="flex justify-between items-center mb-2">
+                    <span class="font-label-sm text-label-sm text-secondary uppercase tracking-widest">Aerolíneas</span>
+                </div>
+                <p class="font-body-md text-outline-variant">Control de operaciones en tierra: movimiento de aviones, equipaje y conexiones de pasajeros en tiempo real.</p>
+            </div>
+            <div class="group border-b border-outline/30 py-6 hover:bg-surface-container-highest/10 transition-all px-4">
+                <div class="flex justify-between items-center mb-2">
+                    <span class="font-label-sm text-label-sm text-secondary uppercase tracking-widest">Startups Tech</span>
+                </div>
+                <p class="font-body-md text-outline-variant">Reportería de resultados, automatización de procesos, desarrollo de MVP.</p>
+            </div>
+        </div>
+    </div>
+</div>
+</section>
+
+<!-- CONTACTO -->
+<section id="contacto" class="full-section bg-surface border-t border-outline-variant">
+<div class="max-w-max-width mx-auto px-margin-mobile md:px-margin-desktop sec-inner grid grid-cols-1 md:grid-cols-2 gap-16">
+    <div>
+        <h2 class="font-headline-lg text-headline-lg mb-4">Conversemos</h2>
+        <p class="font-body-md text-body-md text-on-surface-variant mb-8">Si tienes una operación que necesita más visibilidad, más control o menos trabajo manual, hablemos.</p>
+        <div class="space-y-4">
+            <a href="mailto:contacto@andotek.cl" class="flex items-center gap-4 group">
+                <div class="w-10 h-10 bg-white border border-outline-variant flex items-center justify-center text-secondary group-hover:bg-secondary group-hover:text-white transition-all">
+                    <span class="material-symbols-outlined text-[20px]">mail</span>
+                </div>
+                <div>
+                    <p class="font-label-sm text-label-sm text-industrial-gray uppercase">Email</p>
+                    <p class="font-body-md font-bold text-[14px] group-hover:text-secondary transition-colors">contacto@andotek.cl</p>
+                </div>
+            </a>
+            <a href="https://wa.me/56942453871?text=Hola%20Josu%C3%A9%2C%20vengo%20de%20andotek.cl%20y%20me%20gustar%C3%ADa%20conversar%20sobre%20mi%20operaci%C3%B3n." target="_blank" rel="noopener" class="flex items-center gap-4 group">
+                <div class="w-10 h-10 bg-white border border-outline-variant flex items-center justify-center text-secondary group-hover:bg-secondary group-hover:text-white transition-all">
+                    <span class="material-symbols-outlined text-[20px]">chat</span>
+                </div>
+                <div>
+                    <p class="font-label-sm text-label-sm text-industrial-gray uppercase">WhatsApp</p>
+                    <p class="font-body-md font-bold text-[14px] group-hover:text-secondary transition-colors">Escríbenos directo</p>
+                </div>
+            </a>
+            <div class="flex items-center gap-4 group">
+                <div class="w-10 h-10 bg-white border border-outline-variant flex items-center justify-center text-secondary group-hover:bg-secondary group-hover:text-white transition-all">
+                    <span class="material-symbols-outlined text-[20px]">location_on</span>
+                </div>
+                <div>
+                    <p class="font-label-sm text-label-sm text-industrial-gray uppercase">Ubicación</p>
+                    <p class="font-body-md font-bold text-[14px]">Santiago, Chile</p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="bg-white border border-outline-variant p-6 md:p-8 shadow-sm">
+        <div class="space-y-4" id="contactForm">
+            <div class="space-y-1">
+                <label class="font-label-md text-label-md uppercase text-industrial-gray text-[12px]">Nombre</label>
+                <input id="cfNombre" class="w-full border-b border-outline-variant focus:border-primary focus:ring-0 pl-2 py-2 font-body-md text-[14px] transition-colors bg-transparent" placeholder="  Tu nombre completo" type="text"/>
+            </div>
+            <div class="space-y-1">
+                <label class="font-label-md text-label-md uppercase text-industrial-gray text-[12px]">Empresa</label>
+                <input id="cfEmpresa" class="w-full border-b border-outline-variant focus:border-primary focus:ring-0 pl-2 py-2 font-body-md text-[14px] transition-colors bg-transparent" placeholder="  Nombre de tu empresa" type="text"/>
+            </div>
+            <div class="space-y-1">
+                <label class="font-label-md text-label-md uppercase text-industrial-gray text-[12px]">Email</label>
+                <input id="cfEmail" class="w-full border-b border-outline-variant focus:border-primary focus:ring-0 pl-2 py-2 font-body-md text-[14px] transition-colors bg-transparent" placeholder="  correo@empresa.com" type="email"/>
+            </div>
+            <div class="space-y-1">
+                <label class="font-label-md text-label-md uppercase text-industrial-gray text-[12px]">Cuéntanos en qué te podemos ayudar</label>
+                <textarea id="cfMensaje" class="w-full border border-outline-variant focus:border-primary focus:ring-0 p-3 font-body-md text-[14px] transition-colors resize-none bg-transparent" placeholder="  Escríbenos brevemente..." rows="3"></textarea>
+            </div>
+            <button id="cfBtn" class="w-full py-4 bg-primary text-on-primary font-label-md text-label-md uppercase tracking-[0.2em] hover:opacity-90 transition-opacity" type="button">Enviar mensaje</button>
+            <p id="cfError" class="hidden text-[13px] text-red-600">Hubo un problema al enviar. Intenta de nuevo o escríbenos directo a contacto@andotek.cl</p>
+        </div>
+        <div class="hidden text-center py-12" id="contactSuccess">
+            <p class="font-headline-lg text-[22px] font-semibold text-primary mb-2">¡Mensaje enviado!</p>
+            <p class="font-body-md text-[14px] text-on-surface-variant">Gracias por escribirnos. Te contactaremos pronto.</p>
+        </div>
+    </div>
+</div>
+</section>
+
+
+<!-- Footer -->
+</main>
+
+<footer class="bg-surface-container-highest border-t border-outline-variant">
+<div class="py-16 px-margin-mobile md:px-margin-desktop max-w-max-width mx-auto grid grid-cols-1 md:grid-cols-4 gap-gutter">
+    <div class="md:col-span-2">
+        <div class="text-headline-lg font-headline-lg font-bold text-primary mb-6">Ando<span class="text-secondary-container">tek</span></div>
+        <p class="font-body-md text-body-md text-on-surface-variant max-w-sm mb-8">© 2026 Andotek. Tecnología que nace en la operación.</p>
+    </div>
+    <div class="flex flex-col gap-4">
+        <h6 class="font-label-md text-label-md uppercase text-primary font-bold mb-2">Explorar</h6>
+        <a class="font-label-sm text-label-sm text-on-surface-variant hover:text-primary underline transition-all" href="#que-hacemos">Qué hacemos</a>
+        <a class="font-label-sm text-label-sm text-on-surface-variant hover:text-primary underline transition-all" href="#como-lo-hacemos">Cómo lo hacemos</a>
+        <a class="font-label-sm text-label-sm text-on-surface-variant hover:text-primary underline transition-all" href="#quien">Quiénes somos</a>
+        <a class="font-label-sm text-label-sm text-on-surface-variant hover:text-primary underline transition-all" href="#testimonios">Testimonios</a>
+        <a class="font-label-sm text-label-sm text-on-surface-variant hover:text-primary underline transition-all" href="#experiencia">Experiencia</a>
+    </div>
+    <div class="flex flex-col gap-4">
+        <h6 class="font-label-md text-label-md uppercase text-primary font-bold mb-2">Contacto</h6>
+        <a class="font-label-sm text-label-sm text-on-surface-variant hover:text-primary underline transition-all" href="#contacto">Conversemos</a>
+        <span class="font-label-sm text-label-sm text-on-surface-variant">contacto@andotek.cl</span>
+        <span class="font-label-sm text-label-sm text-on-surface-variant">Santiago, Chile</span>
+    </div>
+</div>
+</footer>
+
+<script>
+// Contact form → Formspree
+const FORMSPREE_ENDPOINT = 'https://formspree.io/f/xlgyogyb';
+
+document.getElementById('cfBtn').addEventListener('click', async () => {
+    const nombre = document.getElementById('cfNombre').value.trim();
+    const empresa = document.getElementById('cfEmpresa').value.trim();
+    const email = document.getElementById('cfEmail').value.trim();
+    const mensaje = document.getElementById('cfMensaje').value.trim();
+    const errorEl = document.getElementById('cfError');
+    const btn = document.getElementById('cfBtn');
+
+    errorEl.classList.add('hidden');
+
+    if (!nombre || !email) {
+        errorEl.textContent = 'Por favor completa al menos tu nombre y email.';
+        errorEl.classList.remove('hidden');
+        return;
+    }
+
+    btn.disabled = true;
+    btn.textContent = 'Enviando...';
+
+    try {
+        const res = await fetch(FORMSPREE_ENDPOINT, {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
+            body: JSON.stringify({
+                origen: 'Contacto',
+                _subject: `Nuevo contacto web: ${nombre}`,
+                nombre: nombre,
+                empresa: empresa,
+                email: email,
+                mensaje: mensaje
+            })
+        });
+        if (res.ok) {
+            document.getElementById('contactForm').classList.add('hidden');
+            document.getElementById('contactSuccess').classList.remove('hidden');
+        } else {
+            throw new Error('Formspree error');
+        }
+    } catch (err) {
+        errorEl.textContent = 'Hubo un problema al enviar. Intenta de nuevo o escríbenos directo a contacto@andotek.cl';
+        errorEl.classList.remove('hidden');
+        btn.disabled = false;
+        btn.textContent = 'Enviar mensaje';
+    }
+});
+</script>
+
+
+<link rel="stylesheet" href="https://unpkg.com/lenis@1.3.26/dist/lenis.css"/>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+<script src="https://unpkg.com/lenis@1.3.26/dist/lenis.min.js"></script>
+<script>
+/* Capa de movimiento: equilibrio entre funcionalidad y moderno.
+   - Hojas apiladas (CSS sticky): la seccion queda fija y la siguiente la
+     cubre; la salida se suaviza aqui con inercia. Scroll siempre nativo.
+   - Entradas uniformes en todas las secciones (fade + 24px, una vez).
+   - El dashboard del hero se construye solo al cargar.
+   - Parallax minimo unicamente en visuales (nunca texto).
+   Mobile y movimiento reducido: pagina tradicional. */
+(function () {
+  document.querySelectorAll('#mobile-menu a').forEach(function (a) {
+    a.addEventListener('click', function () {
+      document.getElementById('mobile-menu').classList.add('hidden');
+    });
+  });
+
+  if (!window.gsap || !window.ScrollTrigger) return;
+  gsap.registerPlugin(ScrollTrigger);
+  var mm = gsap.matchMedia();
+
+  function unitsOf(sec) {
+    var inner = sec.querySelector('.sec-inner');
+    if (!inner) return [];
+    var out = [];
+    Array.prototype.forEach.call(inner.children, function (child) {
+      var isGroup = child.children.length >= 2 && /grid|flex/.test(child.className || '');
+      if (isGroup) Array.prototype.push.apply(out, child.children);
+      else out.push(child);
+    });
+    return out;
+  }
+
+  /* ---- Entradas: mismo tratamiento en toda la pagina ---- */
+  mm.add('(prefers-reduced-motion: no-preference)', function () {
+    gsap.utils.toArray('.full-section').forEach(function (sec, i) {
+      var units = unitsOf(sec);
+      if (!units.length) return;
+      /* Las tarjetas con hover .lift no se desplazan en la entrada:
+         su transicion CSS sobre transform pelearia con la animacion
+         y produce un movimiento gomoso. Solo funden. */
+      var move = [], fade = [];
+      units.forEach(function (u) {
+        (u.classList && u.classList.contains('lift') ? fade : move).push(u);
+      });
+      var st = i === 0 ? null : { trigger: sec, start: 'top 80%', once: true };
+      if (move.length) {
+        var a = { opacity: 0, y: 24, duration: 0.6, ease: 'power2.out', stagger: 0.08, clearProps: 'transform' };
+        if (st) a.scrollTrigger = st; else a.delay = 0.05;
+        gsap.from(move, a);
+      }
+      if (fade.length) {
+        var b = { opacity: 0, duration: 0.6, ease: 'power2.out', stagger: 0.08 };
+        if (st) b.scrollTrigger = st; else b.delay = 0.05;
+        gsap.from(fade, b);
+      }
+    });
+  });
+
+  /* ---- Desktop: inercia + cortina suave + hero + parallax de visuales ---- */
+  mm.add('(min-width: 768px) and (prefers-reduced-motion: no-preference)', function () {
+    var lenis = null, tick = null;
+    if (window.Lenis) {
+      lenis = new Lenis({ lerp: 0.11, anchors: false });
+      window.__andotekLenis = lenis;
+      lenis.on('scroll', ScrollTrigger.update);
+      tick = function (time) { lenis.raf(time * 1000); };
+      gsap.ticker.add(tick);
+      gsap.ticker.lagSmoothing(0);
+    }
+
+    /* Dashboard: se construye una vez al cargar */
+    var build = null;
+    var path = document.getElementById('heroPath');
+    var meta = document.getElementById('heroMeta');
+    if (path && meta) {
+      var pathLen = path.getTotalLength();
+      var metaLen = meta.getTotalLength();
+      gsap.set(path, { strokeDasharray: pathLen, strokeDashoffset: pathLen });
+      gsap.set(meta, { strokeDasharray: metaLen, strokeDashoffset: metaLen });
+      var fmt = function (n) { return Math.round(n).toLocaleString('es-CL'); };
+      var counters = [];
+      document.querySelectorAll('#hero .count').forEach(function (el) {
+        counters.push({ el: el, target: parseFloat(el.dataset.target), obj: { v: 0 } });
+        el.textContent = '0';
+      });
+      build = gsap.timeline({ delay: 0.35 });
+      counters.forEach(function (c) {
+        build.to(c.obj, {
+          v: c.target, duration: 1.1, ease: 'power1.out',
+          onUpdate: function () { c.el.textContent = fmt(c.obj.v); }
+        }, 0);
+      });
+      build.from('.oee-fill', { scaleX: 0, transformOrigin: 'left center', duration: 0.7, stagger: 0.09, ease: 'power1.out' }, 0.1)
+           .to(meta, { strokeDashoffset: 0, duration: 0.5, ease: 'power1.inOut' }, 0.15)
+           .from('#heroMetaLbl', { opacity: 0, duration: 0.3 }, 0.55)
+           .to(path, { strokeDashoffset: 0, duration: 1.0, ease: 'power1.inOut' }, 0.25)
+           .from('#heroDot', { opacity: 0, scale: 0.3, transformOrigin: 'center', duration: 0.25 }, 1.15)
+           .from('#heroPeak', { opacity: 0, duration: 0.25 }, 1.25)
+           .from('#lineChip', { opacity: 0, y: 6, duration: 0.3 }, 1.35);
+    }
+
+    /* Cortina con inercia + parallax de visuales, en un solo bucle */
+    var secs = gsap.utils.toArray('.full-section');
+    var footer = document.querySelector('footer');
+    var sheets = secs.map(function (sec, i) {
+      // Todos los hijos directos: el contenido y cualquier capa decorativa
+      // (por ejemplo la grilla tecnica), para que la hoja salga completa.
+      var parts = Array.prototype.slice.call(sec.children);
+      parts.forEach(function (p) { p.style.willChange = 'transform, opacity'; });
+      return { sec: sec, parts: parts, next: secs[i + 1] || footer, p: 0 };
+    });
+    var drifts = gsap.utils.toArray('[data-drift]').map(function (el) {
+      el.style.willChange = 'transform';
+      return { el: el, amp: parseFloat(el.getAttribute('data-drift')), y: 0 };
+    });
+
+    var EASE = 0.09;
+    var rafId = null;
+    var clamp = function (v, a, b) { return v < a ? a : v > b ? b : v; };
+    var smooth = function (p) { return p * p * (3 - 2 * p); };
+
+    function loop() {
+      var vh = window.innerHeight;
+
+      sheets.forEach(function (sh) {
+        if (!sh.parts.length || !sh.next) return;
+        var top = sh.next.getBoundingClientRect().top;
+        var target = 1 - clamp(top / vh, 0, 1);
+        sh.p += (target - sh.p) * EASE;
+        var e = smooth(clamp(sh.p, 0, 1));
+        var tf = e < 0.001 ? '' : 'scale(' + (1 - 0.055 * e).toFixed(4) + ') translateY(' + (-36 * e).toFixed(1) + 'px)';
+        var op = e < 0.001 ? '' : (1 - 0.62 * e).toFixed(3);
+        sh.parts.forEach(function (p) {
+          p.style.transform = tf;
+          p.style.opacity = op;
+        });
+      });
+
+      drifts.forEach(function (d) {
+        var r = d.el.getBoundingClientRect();
+        var rel = clamp(((r.top + r.height / 2) - vh / 2) / vh, -1, 1);
+        var target = rel * d.amp;
+        d.y += (target - d.y) * EASE;
+        d.el.style.transform = 'translate3d(0,' + d.y.toFixed(2) + 'px,0)';
+      });
+
+      rafId = requestAnimationFrame(loop);
+    }
+    rafId = requestAnimationFrame(loop);
+
+    return function () {
+      if (rafId) cancelAnimationFrame(rafId);
+      if (lenis) { gsap.ticker.remove(tick); lenis.destroy(); window.__andotekLenis = null; }
+      if (build) build.progress(1);
+      sheets.forEach(function (sh) {
+        sh.parts.forEach(function (p) { p.style.transform = ''; p.style.opacity = ''; p.style.willChange = ''; });
+      });
+      drifts.forEach(function (d) { d.el.style.transform = ''; d.el.style.willChange = ''; });
+    };
+  });
+})();
+</script>
+<script>
+/* Navegacion por anclajes, a prueba de fallos.
+   Se registra en cada enlace y fuera de cualquier condicion, para que
+   funcione siempre. El destino se calcula por posicion real en el
+   documento: con secciones sticky, la posicion visual de una seccion ya
+   recorrida es 0 y el navegador concluye que "ya esta a la vista", que es
+   justo el motivo por el que la navegacion nativa no llegaba.
+   Al final se verifica la llegada y se corrige si hizo falta. */
+(function () {
+  /* Con secciones sticky, TODAS las APIs de posicion (offsetTop,
+     getBoundingClientRect) devuelven la posicion fijada actual, no la del
+     documento. Por eso el destino se calcula sumando ALTURAS de las
+     secciones anteriores: la altura no se ve afectada por el fijado. */
+  function docTop(target) {
+    var main = document.querySelector('main');
+    if (!main || !main.contains(target)) {
+      // Fuera de main (p. ej. footer): sumar alturas de todo main
+      if (target === null) return 0;
+      var yy = 0;
+      Array.prototype.forEach.call(main ? main.children : [], function (ch) {
+        yy += ch.offsetHeight;
+      });
+      return yy;
+    }
+    var y = 0;
+    var kids = main.children;
+    for (var i = 0; i < kids.length; i++) {
+      if (kids[i] === target || kids[i].contains(target)) break;
+      y += kids[i].offsetHeight;
+    }
+    return y;
+  }
+
+  function goTo(id) {
+    var t = id ? document.getElementById(id) : null;
+    var y = t ? docTop(t) : 0;
+    var lenis = window.__andotekLenis;
+
+    if (lenis && typeof lenis.scrollTo === 'function') {
+      lenis.scrollTo(y, { duration: 1.1, lock: true, force: true });
+      // Red de seguridad: si el desplazamiento no llego, se corrige.
+      setTimeout(function () {
+        if (Math.abs(window.scrollY - y) > 6) {
+          window.scrollTo(0, y);
+          if (typeof lenis.resize === 'function') lenis.resize();
+        }
+      }, 1400);
+    } else {
+      window.scrollTo({ top: y, behavior: 'smooth' });
+    }
+  }
+
+  function bind() {
+    document.querySelectorAll('a[href^="#"]').forEach(function (a) {
+      a.addEventListener('click', function (e) {
+        var href = a.getAttribute('href') || '';
+        var id = href.slice(1);
+        e.preventDefault();
+        goTo(id);
+        if (id && history.replaceState) history.replaceState(null, '', '#' + id);
+        var mm = document.getElementById('mobile-menu');
+        if (mm) mm.classList.add('hidden');
+      });
+    });
+  }
+
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', bind);
+  } else {
+    bind();
+  }
+})();
+</script>
+</body>
+</html>
