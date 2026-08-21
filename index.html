@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html class="scroll-smooth" lang="es">
+<html lang="es">
 <head>
 <meta charset="utf-8"/>
 <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
@@ -19,6 +19,26 @@
 <meta name="twitter:image" content="https://andotek.cl/og-image.png"/>
 <link rel="icon" type="image/svg+xml" href="favicon.svg"/>
 <link rel="stylesheet" href="styles.css"/>
+<style>
+/* Capa de movimiento "Precision, no espectaculo".
+   Inline porque estas clases las usa el script y Tailwind las purgaria. */
+html.lenis, html.lenis body { height: auto; }
+/* Suavizado nativo solo donde no actua Lenis; en desktop se pelearian
+   por la posicion y el desplazamiento se corta a medio camino. */
+@media (max-width: 767px) { html { scroll-behavior: smooth; } }
+.lenis.lenis-smooth { scroll-behavior: auto !important; }
+
+/* Latido visible del indicador "Linea operando" (el pulso por defecto
+   de Tailwind solo baja al 50% y apenas se percibe) */
+@keyframes chipPulse { 0%, 100% { opacity: 1; } 50% { opacity: 0.25; } }
+#lineChip .animate-pulse { animation: chipPulse 1.6s ease-in-out infinite; }
+
+/* Micro-interaccion al hover (solo dispositivos con cursor) */
+@media (hover: hover) {
+  .lift { transition: transform .2s ease, box-shadow .2s ease, border-color .2s ease; }
+  .lift:hover { transform: translateY(-2px); box-shadow: 0 8px 24px rgba(0,0,0,.08); }
+}
+</style>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet"/>
 <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
 </head>
@@ -30,7 +50,6 @@
     <a href="#" class="text-headline-lg font-headline-lg font-bold text-primary">Ando<span class="text-secondary-container">tek</span></a>
     <div class="hidden md:flex items-center gap-8">
         <a class="font-label-md text-label-md uppercase tracking-wider text-on-surface-variant hover:text-secondary transition-colors duration-200" href="#que-hacemos">Qué hacemos</a>
-        <a class="font-label-md text-label-md uppercase tracking-wider text-on-surface-variant hover:text-secondary transition-colors duration-200" href="#como-lo-hacemos">Cómo lo hacemos</a>
         <a class="font-label-md text-label-md uppercase tracking-wider text-on-surface-variant hover:text-secondary transition-colors duration-200" href="#quien">Quiénes somos</a>
         <a class="font-label-md text-label-md uppercase tracking-wider text-on-surface-variant hover:text-secondary transition-colors duration-200" href="#experiencia">Experiencia</a>
         <a class="ml-4 px-6 py-2 bg-primary text-on-primary font-label-md text-label-md uppercase tracking-widest hover:opacity-80 transition-opacity" href="#contacto">Conversemos</a>
@@ -41,19 +60,17 @@
 </nav>
 <div class="hidden md:hidden bg-surface border-b border-outline-variant px-margin-mobile py-8 flex flex-col gap-6" id="mobile-menu">
     <a class="font-label-md text-label-md uppercase tracking-wider text-on-surface" href="#que-hacemos">Qué hacemos</a>
-    <a class="font-label-md text-label-md uppercase tracking-wider text-on-surface" href="#como-lo-hacemos">Cómo lo hacemos</a>
     <a class="font-label-md text-label-md uppercase tracking-wider text-on-surface" href="#quien">Quiénes somos</a>
     <a class="font-label-md text-label-md uppercase tracking-wider text-on-surface" href="#experiencia">Experiencia</a>
-    <a class="font-label-md text-label-md uppercase tracking-wider text-on-surface" href="#contacto">Contacto</a>
+    <a class="font-label-md text-label-md uppercase tracking-wider text-on-surface" href="#contacto">Conversemos</a>
 </div>
 </header>
 
-<main class="pt-20">
+<main>
 
 <!-- HERO -->
-<section class="full-section relative overflow-hidden border-b border-outline-variant">
-    <div class="absolute inset-0 technical-grid"></div>
-    <div class="max-w-max-width mx-auto px-margin-mobile md:px-margin-desktop grid grid-cols-1 md:grid-cols-2 gap-gutter items-center relative z-10 py-8">
+<section id="hero" class="full-section bg-surface relative overflow-hidden border-b border-outline-variant">
+    <div class="sec-inner max-w-max-width mx-auto px-margin-mobile md:px-margin-desktop grid grid-cols-1 md:grid-cols-2 gap-gutter items-center relative py-8">
         <div class="space-y-6">
             <h1 class="font-headline-xl text-headline-xl text-primary leading-tight fade-in fade-in-delay-1">
                 Ando<span class="text-secondary-container">tek</span>
@@ -71,11 +88,11 @@
             </div>
         </div>
         <div class="relative hidden md:block">
-            <div class="aspect-[4/3] overflow-hidden border border-outline-variant rounded-lg p-6 flex flex-col" style="background: #111113;">
+            <div data-drift="-26" class="aspect-[4/3] overflow-hidden border border-outline-variant rounded-lg p-6 flex flex-col" style="background: #111113;">
                 <!-- Panel header -->
                 <div class="flex items-center justify-between mb-4">
                     <span class="font-label-sm text-[10px] uppercase tracking-[0.12em]" style="color: #6b6b70;">Línea 2 · Envasado · Turno A</span>
-                    <div class="flex items-center gap-2 rounded px-2.5 py-1" style="background: #12291a; border: 1px solid #1e4a2c;">
+                    <div id="lineChip" class="flex items-center gap-2 rounded px-2.5 py-1" style="background: #12291a; border: 1px solid #1e4a2c;">
                         <span class="w-1.5 h-1.5 rounded-full animate-pulse" style="background: #4ae176;"></span>
                         <span class="font-label-sm text-[9px] uppercase tracking-[0.1em]" style="color: #4ae176;">Línea operando</span>
                     </div>
@@ -84,30 +101,30 @@
                 <div class="grid grid-cols-2 mb-4" style="border-top: 1px solid #26262a; border-bottom: 1px solid #26262a;">
                     <div class="py-3" style="border-right: 1px solid #26262a;">
                         <p class="font-label-sm text-[9px] uppercase tracking-[0.08em] mb-1" style="color: #6b6b70;">Producción total</p>
-                        <p class="font-label-md text-[24px] font-medium leading-none" style="color: #f4f4f5;">42.680<span class="text-[12px]" style="color: #6b6b70;"> kg</span></p>
+                        <p class="font-label-md text-[24px] font-medium leading-none" style="color: #f4f4f5;"><span class="count" data-target="42680">42.680</span><span class="text-[12px]" style="color: #6b6b70;"> kg</span></p>
                     </div>
                     <div class="py-3 pl-4">
                         <p class="font-label-sm text-[9px] uppercase tracking-[0.08em] mb-1" style="color: #6b6b70;">Tasa actual</p>
-                        <p class="font-label-md text-[24px] font-medium leading-none" style="color: #fd761a;">1.240<span class="text-[12px]" style="color: #6b6b70;"> kg/h</span></p>
+                        <p class="font-label-md text-[24px] font-medium leading-none" style="color: #fd761a;"><span class="count" data-target="1240">1.240</span><span class="text-[12px]" style="color: #6b6b70;"> kg/h</span></p>
                     </div>
                 </div>
                 <!-- OEE -->
                 <div class="grid grid-cols-4 gap-3 mb-4">
                     <div>
                         <div class="flex justify-between mb-1"><span class="font-label-sm text-[8px] tracking-[0.05em]" style="color: #6b6b70;">DISPONIB.</span><span class="font-label-sm text-[10px]" style="color: #f4f4f5;">92,1%</span></div>
-                        <div class="h-1 rounded-full" style="background: #26262a;"><div class="h-full rounded-full" style="width: 92%; background: #4ae176;"></div></div>
+                        <div class="h-1 rounded-full" style="background: #26262a;"><div class="h-full rounded-full oee-fill" style="width: 92%; background: #4ae176;"></div></div>
                     </div>
                     <div>
                         <div class="flex justify-between mb-1"><span class="font-label-sm text-[8px] tracking-[0.05em]" style="color: #6b6b70;">RENDIM.</span><span class="font-label-sm text-[10px]" style="color: #f4f4f5;">88,4%</span></div>
-                        <div class="h-1 rounded-full" style="background: #26262a;"><div class="h-full rounded-full" style="width: 88%; background: #f5c518;"></div></div>
+                        <div class="h-1 rounded-full" style="background: #26262a;"><div class="h-full rounded-full oee-fill" style="width: 88%; background: #f5c518;"></div></div>
                     </div>
                     <div>
                         <div class="flex justify-between mb-1"><span class="font-label-sm text-[8px] tracking-[0.05em]" style="color: #6b6b70;">CALIDAD</span><span class="font-label-sm text-[10px]" style="color: #f4f4f5;">98,7%</span></div>
-                        <div class="h-1 rounded-full" style="background: #26262a;"><div class="h-full rounded-full" style="width: 98%; background: #4ae176;"></div></div>
+                        <div class="h-1 rounded-full" style="background: #26262a;"><div class="h-full rounded-full oee-fill" style="width: 98%; background: #4ae176;"></div></div>
                     </div>
                     <div>
                         <div class="flex justify-between mb-1"><span class="font-label-sm text-[8px] tracking-[0.05em]" style="color: #fd761a;">OEE</span><span class="font-label-sm text-[10px]" style="color: #fd761a;">80,3%</span></div>
-                        <div class="h-1 rounded-full" style="background: #26262a;"><div class="h-full rounded-full" style="width: 80%; background: #fd761a;"></div></div>
+                        <div class="h-1 rounded-full" style="background: #26262a;"><div class="h-full rounded-full oee-fill" style="width: 80%; background: #fd761a;"></div></div>
                     </div>
                 </div>
                 <!-- Chart -->
@@ -117,13 +134,13 @@
                         <line x1="0" y1="58" x2="560" y2="58" stroke="#232327" stroke-width="1"/>
                         <line x1="0" y1="86" x2="560" y2="86" stroke="#232327" stroke-width="1"/>
                         <!-- Meta line + label -->
-                        <line x1="0" y1="64" x2="560" y2="64" stroke="#fd761a" stroke-width="1" stroke-dasharray="4 5" opacity="0.5"/>
-                        <text x="4" y="59" font-family="JetBrains Mono, monospace" font-size="11" fill="#a56a42">Meta 1.100 kg/h</text>
+                        <line id="heroMeta" x1="0" y1="64" x2="560" y2="64" stroke="#fd761a" stroke-width="1" stroke-dasharray="4 5" opacity="0.5"/>
+                        <text id="heroMetaLbl" x="4" y="59" font-family="JetBrains Mono, monospace" font-size="11" fill="#a56a42">Meta 1.100 kg/h</text>
                         <!-- Production line -->
-                        <path d="M12,96 L80,86 L148,89 L216,71 L284,77 L352,58 L420,65 L488,48 L548,40" fill="none" stroke="#fd761a" stroke-width="2.5" stroke-linejoin="round"/>
+                        <path id="heroPath" d="M12,96 L80,86 L148,89 L216,71 L284,77 L352,58 L420,65 L488,48 L548,40" fill="none" stroke="#fd761a" stroke-width="2.5" stroke-linejoin="round"/>
                         <!-- Current point + value -->
-                        <circle cx="548" cy="40" r="4.5" fill="#fd761a"/>
-                        <text x="548" y="26" text-anchor="end" font-family="JetBrains Mono, monospace" font-size="12" font-weight="500" fill="#f4f4f5">1.240 kg/h</text>
+                        <circle id="heroDot" cx="548" cy="40" r="4.5" fill="#fd761a"/>
+                        <text id="heroPeak" x="548" y="26" text-anchor="end" font-family="JetBrains Mono, monospace" font-size="12" font-weight="500" fill="#f4f4f5">1.240 kg/h</text>
                         <!-- Hour axis -->
                         <text x="12" y="122" font-family="JetBrains Mono, monospace" font-size="11" fill="#6b6b70">08:00</text>
                         <text x="284" y="122" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="11" fill="#6b6b70">12:00</text>
@@ -131,7 +148,7 @@
                     </svg>
                 </div>
             </div>
-            <div class="absolute -bottom-6 -left-6 bg-secondary text-on-secondary p-8 shadow-xl">
+            <div data-drift="30" class="absolute -bottom-6 -left-6 bg-secondary text-on-secondary p-8 shadow-xl">
                 <p class="font-headline-lg text-headline-lg font-bold">+15 años</p>
                 <p class="font-label-sm text-label-sm opacity-80">liderando mejoras operacionales</p>
             </div>
@@ -140,37 +157,36 @@
 </section>
 
 <!-- QUÉ HACEMOS -->
-<span class="scroll-anchor" id="que-hacemos"></span>
-<section class="full-section bg-white border-b border-outline-variant">
-<div class="max-w-max-width mx-auto px-margin-mobile md:px-margin-desktop">
+<section id="que-hacemos" class="full-section bg-white border-b border-outline-variant">
+<div class="max-w-max-width mx-auto px-margin-mobile md:px-margin-desktop sec-inner">
     <div class="max-w-3xl mb-6">
         <h2 class="font-headline-lg text-headline-lg text-primary mb-2">Creamos herramientas digitales que se adaptan a tu operación, no al revés.</h2>
         <p class="font-body-md text-[14px] text-on-surface-variant">Cada operación es distinta. Por eso no vendemos software genérico: diseñamos y construimos soluciones a la medida que resuelven problemas reales de gestión operacional.</p>
     </div>
     <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
-        <div class="border border-outline-variant px-6 py-5 hover:border-secondary transition-colors group flex gap-5 items-start">
-            <span class="material-symbols-outlined text-2xl text-industrial-gray group-hover:text-secondary transition-colors mt-1 shrink-0">sensors</span>
+        <div class="lift border border-outline-variant px-6 py-5 hover:border-secondary transition-colors group flex gap-5 items-start">
+            <span class="material-symbols-outlined text-2xl text-secondary mt-1 shrink-0">sensors</span>
             <div>
                 <h3 class="font-headline-lg text-[18px] font-semibold mb-1">Digitalización de mediciones</h3>
                 <p class="font-body-md text-[13px] text-on-surface-variant leading-relaxed">Digitaliza tus registros manuales y visualiza resultados en tiempo real. Nos integramos con tus sistemas y sensores.</p>
             </div>
         </div>
-        <div class="border border-outline-variant px-6 py-5 hover:border-secondary transition-colors group flex gap-5 items-start">
-            <span class="material-symbols-outlined text-2xl text-industrial-gray group-hover:text-secondary transition-colors mt-1 shrink-0">dashboard</span>
+        <div class="lift border border-outline-variant px-6 py-5 hover:border-secondary transition-colors group flex gap-5 items-start">
+            <span class="material-symbols-outlined text-2xl text-secondary mt-1 shrink-0">dashboard</span>
             <div>
                 <h3 class="font-headline-lg text-[18px] font-semibold mb-1">Dashboards operacionales en tiempo real</h3>
                 <p class="font-body-md text-[13px] text-on-surface-variant leading-relaxed">Ve el desempeño de tu planta, tienda o equipo en el momento, no al final del mes.</p>
             </div>
         </div>
-        <div class="border border-outline-variant px-6 py-5 hover:border-secondary transition-colors group flex gap-5 items-start">
-            <span class="material-symbols-outlined text-2xl text-industrial-gray group-hover:text-secondary transition-colors mt-1 shrink-0">settings_suggest</span>
+        <div class="lift border border-outline-variant px-6 py-5 hover:border-secondary transition-colors group flex gap-5 items-start">
+            <span class="material-symbols-outlined text-2xl text-secondary mt-1 shrink-0">settings_suggest</span>
             <div>
                 <h3 class="font-headline-lg text-[18px] font-semibold mb-1">Automatización de gestión e inteligencia artificial</h3>
                 <p class="font-body-md text-[13px] text-on-surface-variant leading-relaxed">Reemplaza planillas, WhatsApp y procesos manuales por sistemas y automatizaciones inteligentes que se ejecutan solas, de forma consistente.</p>
             </div>
         </div>
-        <div class="border border-outline-variant px-6 py-5 hover:border-secondary transition-colors group flex gap-5 items-start">
-            <span class="material-symbols-outlined text-2xl text-industrial-gray group-hover:text-secondary transition-colors mt-1 shrink-0">checklist</span>
+        <div class="lift border border-outline-variant px-6 py-5 hover:border-secondary transition-colors group flex gap-5 items-start">
+            <span class="material-symbols-outlined text-2xl text-secondary mt-1 shrink-0">checklist</span>
             <div>
                 <h3 class="font-headline-lg text-[18px] font-semibold mb-1">Checklists y auditorías digitales</h3>
                 <p class="font-body-md text-[13px] text-on-surface-variant leading-relaxed">5S, auditorías de proceso, inspecciones de calidad. Estandariza, mide en terreno y ve resultados en tiempo real.</p>
@@ -181,48 +197,45 @@
 </section>
 
 <!-- CÓMO LO HACEMOS -->
-<span class="scroll-anchor" id="como-lo-hacemos"></span>
-<section class="full-section bg-surface relative overflow-hidden">
-<div class="absolute top-0 right-0 w-1/3 h-full technical-grid"></div>
-<div class="max-w-max-width mx-auto px-margin-mobile md:px-margin-desktop relative z-10">
+<section id="como-lo-hacemos" class="full-section bg-primary text-on-primary">
+<div class="max-w-max-width mx-auto px-margin-mobile md:px-margin-desktop sec-inner relative">
     <div class="mb-12">
-        <h2 class="font-headline-lg text-headline-lg text-primary mb-4">Partimos en terreno. Después programamos.</h2>
-        <p class="font-body-lg text-body-lg text-on-surface-variant max-w-2xl">No somos una fábrica de software que necesita que le expliques tu negocio. Venimos de años en terreno liderando proyectos operacionales en manufactura, retail, aerolíneas y logística. Entendemos los problemas porque los hemos vivido.</p>
+        <h2 class="font-headline-lg text-headline-lg mb-4"><span class="text-secondary-container">Partimos en terreno.</span> Después programamos.</h2>
+        <p class="font-body-lg text-body-lg text-outline-variant max-w-2xl">No somos una fábrica de software que necesita que le expliques tu negocio. Venimos de años en terreno liderando proyectos operacionales en manufactura, retail, aerolíneas y logística. Entendemos los problemas porque los hemos vivido.</p>
     </div>
     <div class="grid grid-cols-1 md:grid-cols-3 gap-10">
         <div class="relative">
-            <div class="w-14 h-14 border-2 border-primary flex items-center justify-center mb-6 bg-surface">
-                <span class="font-label-md text-headline-lg">01</span>
+            <div class="w-14 h-14 border-2 border-white flex items-center justify-center mb-6">
+                <span class="font-label-md text-headline-lg text-secondary-container">01</span>
             </div>
             <h4 class="font-headline-lg text-headline-lg mb-3">Entendemos tu operación</h4>
-            <p class="font-body-md text-on-surface-variant">Vamos a terreno. Observamos. Diagnosticamos. Identificamos dónde la tecnología puede generar mayor impacto.</p>
+            <p class="font-body-md text-outline-variant">Vamos a terreno. Observamos. Diagnosticamos. Identificamos dónde la tecnología puede generar mayor impacto.</p>
         </div>
         <div class="relative">
-            <div class="w-14 h-14 border-2 border-primary flex items-center justify-center mb-6 bg-surface">
-                <span class="font-label-md text-headline-lg">02</span>
+            <div class="w-14 h-14 border-2 border-white flex items-center justify-center mb-6">
+                <span class="font-label-md text-headline-lg text-secondary-container">02</span>
             </div>
             <h4 class="font-headline-lg text-headline-lg mb-3">Diseñamos y construimos</h4>
-            <p class="font-body-md text-on-surface-variant">Creamos una solución a tu medida: simple, visual, que tu equipo pueda usar desde el día uno.</p>
+            <p class="font-body-md text-outline-variant">Creamos una solución a tu medida: simple, visual, que tu equipo pueda usar desde el día uno.</p>
         </div>
         <div class="relative">
-            <div class="w-14 h-14 border-2 border-primary flex items-center justify-center mb-6 bg-surface">
-                <span class="font-label-md text-headline-lg">03</span>
+            <div class="w-14 h-14 border-2 border-white flex items-center justify-center mb-6">
+                <span class="font-label-md text-headline-lg text-secondary-container">03</span>
             </div>
             <h4 class="font-headline-lg text-headline-lg mb-3">Iteramos y mejoramos contigo</h4>
-            <p class="font-body-md text-on-surface-variant">La herramienta evoluciona con tu operación. Mejora continua aplicada al producto, no solo al proceso.</p>
+            <p class="font-body-md text-outline-variant">La herramienta evoluciona con tu operación. Mejora continua aplicada al producto, no solo al proceso.</p>
         </div>
     </div>
 </div>
 </section>
 
 <!-- QUIÉN ESTÁ DETRÁS -->
-<span class="scroll-anchor" id="quien"></span>
-<section class="full-section bg-white border-b border-outline-variant">
-<div class="max-w-max-width mx-auto px-margin-mobile md:px-margin-desktop">
+<section id="quien" class="full-section bg-white border-b border-outline-variant">
+<div class="max-w-max-width mx-auto px-margin-mobile md:px-margin-desktop sec-inner">
     <div class="flex flex-col md:flex-row gap-10 md:gap-16 items-start">
         <!-- Foto -->
         <div class="shrink-0">
-            <img src="josue-foto.jpg" alt="Josué Brito, fundador de Andotek" class="w-[130px] md:w-[170px] rounded-lg border border-outline-variant"/>
+            <img data-drift="-18" src="josue-foto.jpg" alt="Josué Brito, fundador de Andotek" class="w-[130px] md:w-[170px] rounded-lg border border-outline-variant"/>
         </div>
         <!-- Bio -->
         <div class="flex-1">
@@ -249,10 +262,9 @@
 </div>
 </section>
 
-<!-- EXPERIENCIA -->
-<span class="scroll-anchor" id="experiencia"></span>
-<section class="full-section bg-primary text-on-primary">
-<div class="max-w-max-width mx-auto px-margin-mobile md:px-margin-desktop">
+<!-- TESTIMONIOS -->
+<section id="experiencia" class="full-section bg-primary text-on-primary">
+<div class="max-w-max-width mx-auto px-margin-mobile md:px-margin-desktop sec-inner">
     <div class="flex flex-col md:flex-row gap-16 items-start">
         <div class="md:sticky md:top-32 w-full md:w-1/3">
             <h2 class="font-headline-lg text-headline-lg mb-6">Más de 15 años resolviendo problemas operacionales</h2>
@@ -283,23 +295,32 @@
 </div>
 </section>
 
+<!-- EXPERIENCIA -->
 <!-- CONTACTO -->
-<span class="scroll-anchor" id="contacto"></span>
-<section class="full-section bg-surface border-t border-outline-variant">
-<div class="max-w-max-width mx-auto px-margin-mobile md:px-margin-desktop grid grid-cols-1 md:grid-cols-2 gap-16">
+<section id="contacto" class="full-section bg-surface border-t border-outline-variant">
+<div class="max-w-max-width mx-auto px-margin-mobile md:px-margin-desktop sec-inner grid grid-cols-1 md:grid-cols-2 gap-16">
     <div>
         <h2 class="font-headline-lg text-headline-lg mb-4">Conversemos</h2>
         <p class="font-body-md text-body-md text-on-surface-variant mb-8">Si tienes una operación que necesita más visibilidad, más control o menos trabajo manual, hablemos.</p>
         <div class="space-y-4">
-            <div class="flex items-center gap-4 group">
+            <a href="mailto:contacto@andotek.cl" class="flex items-center gap-4 group">
                 <div class="w-10 h-10 bg-white border border-outline-variant flex items-center justify-center text-secondary group-hover:bg-secondary group-hover:text-white transition-all">
                     <span class="material-symbols-outlined text-[20px]">mail</span>
                 </div>
                 <div>
                     <p class="font-label-sm text-label-sm text-industrial-gray uppercase">Email</p>
-                    <p class="font-body-md font-bold text-[14px]">contacto@andotek.cl</p>
+                    <p class="font-body-md font-bold text-[14px] group-hover:text-secondary transition-colors">contacto@andotek.cl</p>
                 </div>
-            </div>
+            </a>
+            <a href="https://wa.me/56942453871?text=Hola%20Josu%C3%A9%2C%20vengo%20de%20andotek.cl%20y%20me%20gustar%C3%ADa%20conversar%20sobre%20mi%20operaci%C3%B3n." target="_blank" rel="noopener" class="flex items-center gap-4 group">
+                <div class="w-10 h-10 bg-white border border-outline-variant flex items-center justify-center text-secondary group-hover:bg-secondary group-hover:text-white transition-all">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.297-.347.446-.52.149-.174.198-.298.297-.497.1-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+                </div>
+                <div>
+                    <p class="font-label-sm text-label-sm text-industrial-gray uppercase">WhatsApp</p>
+                    <p class="font-body-md font-bold text-[14px] group-hover:text-secondary transition-colors">Escríbenos directo</p>
+                </div>
+            </a>
             <div class="flex items-center gap-4 group">
                 <div class="w-10 h-10 bg-white border border-outline-variant flex items-center justify-center text-secondary group-hover:bg-secondary group-hover:text-white transition-all">
                     <span class="material-symbols-outlined text-[20px]">location_on</span>
@@ -340,9 +361,10 @@
 </div>
 </section>
 
-</main>
 
 <!-- Footer -->
+</main>
+
 <footer class="bg-surface-container-highest border-t border-outline-variant">
 <div class="py-16 px-margin-mobile md:px-margin-desktop max-w-max-width mx-auto grid grid-cols-1 md:grid-cols-4 gap-gutter">
     <div class="md:col-span-2">
@@ -352,7 +374,7 @@
     <div class="flex flex-col gap-4">
         <h6 class="font-label-md text-label-md uppercase text-primary font-bold mb-2">Explorar</h6>
         <a class="font-label-sm text-label-sm text-on-surface-variant hover:text-primary underline transition-all" href="#que-hacemos">Qué hacemos</a>
-        <a class="font-label-sm text-label-sm text-on-surface-variant hover:text-primary underline transition-all" href="#como-lo-hacemos">Cómo lo hacemos</a>
+        <a class="font-label-sm text-label-sm text-on-surface-variant hover:text-primary underline transition-all" href="#quien">Quiénes somos</a>
         <a class="font-label-sm text-label-sm text-on-surface-variant hover:text-primary underline transition-all" href="#experiencia">Experiencia</a>
     </div>
     <div class="flex flex-col gap-4">
@@ -414,5 +436,261 @@ document.getElementById('cfBtn').addEventListener('click', async () => {
     }
 });
 </script>
+
+
+<link rel="stylesheet" href="https://unpkg.com/lenis@1.3.26/dist/lenis.css"/>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+<script src="https://unpkg.com/lenis@1.3.26/dist/lenis.min.js"></script>
+<script>
+/* Capa de movimiento: equilibrio entre funcionalidad y moderno.
+   - Hojas apiladas (CSS sticky): la seccion queda fija y la siguiente la
+     cubre; la salida se suaviza aqui con inercia. Scroll siempre nativo.
+   - Entradas uniformes en todas las secciones (fade + 24px, una vez).
+   - El dashboard del hero se construye solo al cargar.
+   - Parallax minimo unicamente en visuales (nunca texto).
+   Mobile y movimiento reducido: pagina tradicional. */
+(function () {
+  document.querySelectorAll('#mobile-menu a').forEach(function (a) {
+    a.addEventListener('click', function () {
+      document.getElementById('mobile-menu').classList.add('hidden');
+    });
+  });
+
+  if (!window.gsap || !window.ScrollTrigger) return;
+  gsap.registerPlugin(ScrollTrigger);
+  var mm = gsap.matchMedia();
+
+  function unitsOf(sec) {
+    var inner = sec.querySelector('.sec-inner');
+    if (!inner) return [];
+    var out = [];
+    Array.prototype.forEach.call(inner.children, function (child) {
+      var isGroup = child.children.length >= 2 && /grid|flex/.test(child.className || '');
+      if (isGroup) Array.prototype.push.apply(out, child.children);
+      else out.push(child);
+    });
+    return out;
+  }
+
+  /* ---- Entradas: mismo tratamiento en toda la pagina ---- */
+  mm.add('(prefers-reduced-motion: no-preference)', function () {
+    gsap.utils.toArray('.full-section').forEach(function (sec, i) {
+      var units = unitsOf(sec);
+      if (!units.length) return;
+      /* Las tarjetas con hover .lift no se desplazan en la entrada:
+         su transicion CSS sobre transform pelearia con la animacion
+         y produce un movimiento gomoso. Solo funden. */
+      var move = [], fade = [];
+      units.forEach(function (u) {
+        (u.classList && u.classList.contains('lift') ? fade : move).push(u);
+      });
+      var st = i === 0 ? null : { trigger: sec, start: 'top 80%', once: true };
+      if (move.length) {
+        var a = { opacity: 0, y: 24, duration: 0.6, ease: 'power2.out', stagger: 0.08, clearProps: 'transform' };
+        if (st) a.scrollTrigger = st; else a.delay = 0.05;
+        gsap.from(move, a);
+      }
+      if (fade.length) {
+        var b = { opacity: 0, duration: 0.6, ease: 'power2.out', stagger: 0.08 };
+        if (st) b.scrollTrigger = st; else b.delay = 0.05;
+        gsap.from(fade, b);
+      }
+    });
+  });
+
+  /* ---- Desktop: inercia + cortina suave + hero + parallax de visuales ---- */
+  mm.add('(min-width: 768px) and (prefers-reduced-motion: no-preference)', function () {
+    var lenis = null, tick = null;
+    if (window.Lenis) {
+      lenis = new Lenis({ lerp: 0.11, anchors: false });
+      window.__andotekLenis = lenis;
+      lenis.on('scroll', ScrollTrigger.update);
+      tick = function (time) { lenis.raf(time * 1000); };
+      gsap.ticker.add(tick);
+      gsap.ticker.lagSmoothing(0);
+    }
+
+    /* Dashboard: se construye una vez al cargar */
+    var build = null;
+    var path = document.getElementById('heroPath');
+    var meta = document.getElementById('heroMeta');
+    if (path && meta) {
+      var pathLen = path.getTotalLength();
+      var metaLen = meta.getTotalLength();
+      gsap.set(path, { strokeDasharray: pathLen, strokeDashoffset: pathLen });
+      gsap.set(meta, { strokeDasharray: metaLen, strokeDashoffset: metaLen });
+      var fmt = function (n) { return Math.round(n).toLocaleString('es-CL'); };
+      var counters = [];
+      document.querySelectorAll('#hero .count').forEach(function (el) {
+        counters.push({ el: el, target: parseFloat(el.dataset.target), obj: { v: 0 } });
+        el.textContent = '0';
+      });
+      build = gsap.timeline({ delay: 0.35 });
+      counters.forEach(function (c) {
+        build.to(c.obj, {
+          v: c.target, duration: 1.1, ease: 'power1.out',
+          onUpdate: function () { c.el.textContent = fmt(c.obj.v); }
+        }, 0);
+      });
+      build.from('.oee-fill', { scaleX: 0, transformOrigin: 'left center', duration: 0.7, stagger: 0.09, ease: 'power1.out' }, 0.1)
+           .to(meta, { strokeDashoffset: 0, duration: 0.5, ease: 'power1.inOut' }, 0.15)
+           .from('#heroMetaLbl', { opacity: 0, duration: 0.3 }, 0.55)
+           .to(path, { strokeDashoffset: 0, duration: 1.0, ease: 'power1.inOut' }, 0.25)
+           .from('#heroDot', { opacity: 0, scale: 0.3, transformOrigin: 'center', duration: 0.25 }, 1.15)
+           .from('#heroPeak', { opacity: 0, duration: 0.25 }, 1.25)
+           .from('#lineChip', { opacity: 0, y: 6, duration: 0.3 }, 1.35);
+    }
+
+    /* Cortina con inercia + parallax de visuales, en un solo bucle */
+    var secs = gsap.utils.toArray('.full-section');
+    var footer = document.querySelector('footer');
+    var sheets = secs.map(function (sec, i) {
+      // Todos los hijos directos: el contenido y cualquier capa decorativa
+      // (por ejemplo la grilla tecnica), para que la hoja salga completa.
+      var parts = Array.prototype.slice.call(sec.children);
+      parts.forEach(function (p) { p.style.willChange = 'transform, opacity'; });
+      return { sec: sec, parts: parts, next: secs[i + 1] || footer, p: 0 };
+    });
+    var drifts = gsap.utils.toArray('[data-drift]').map(function (el) {
+      el.style.willChange = 'transform';
+      return { el: el, amp: parseFloat(el.getAttribute('data-drift')), y: 0 };
+    });
+
+    var EASE = 0.09;
+    var rafId = null;
+    var clamp = function (v, a, b) { return v < a ? a : v > b ? b : v; };
+    var smooth = function (p) { return p * p * (3 - 2 * p); };
+
+    function loop() {
+      var vh = window.innerHeight;
+
+      sheets.forEach(function (sh) {
+        if (!sh.parts.length || !sh.next) return;
+        var top = sh.next.getBoundingClientRect().top;
+        var target = 1 - clamp(top / vh, 0, 1);
+        sh.p += (target - sh.p) * EASE;
+        var e = smooth(clamp(sh.p, 0, 1));
+        var tf = e < 0.001 ? '' : 'scale(' + (1 - 0.055 * e).toFixed(4) + ') translateY(' + (-36 * e).toFixed(1) + 'px)';
+        var op = e < 0.001 ? '' : (1 - 0.62 * e).toFixed(3);
+        sh.parts.forEach(function (p) {
+          p.style.transform = tf;
+          p.style.opacity = op;
+        });
+      });
+
+      drifts.forEach(function (d) {
+        var r = d.el.getBoundingClientRect();
+        var rel = clamp(((r.top + r.height / 2) - vh / 2) / vh, -1, 1);
+        var target = rel * d.amp;
+        d.y += (target - d.y) * EASE;
+        d.el.style.transform = 'translate3d(0,' + d.y.toFixed(2) + 'px,0)';
+      });
+
+      rafId = requestAnimationFrame(loop);
+    }
+    rafId = requestAnimationFrame(loop);
+
+    return function () {
+      if (rafId) cancelAnimationFrame(rafId);
+      if (lenis) { gsap.ticker.remove(tick); lenis.destroy(); window.__andotekLenis = null; }
+      if (build) build.progress(1);
+      sheets.forEach(function (sh) {
+        sh.parts.forEach(function (p) { p.style.transform = ''; p.style.opacity = ''; p.style.willChange = ''; });
+      });
+      drifts.forEach(function (d) { d.el.style.transform = ''; d.el.style.willChange = ''; });
+    };
+  });
+})();
+</script>
+<script>
+/* Navegacion por anclajes, a prueba de fallos.
+   Se registra en cada enlace y fuera de cualquier condicion, para que
+   funcione siempre. El destino se calcula por posicion real en el
+   documento: con secciones sticky, la posicion visual de una seccion ya
+   recorrida es 0 y el navegador concluye que "ya esta a la vista", que es
+   justo el motivo por el que la navegacion nativa no llegaba.
+   Al final se verifica la llegada y se corrige si hizo falta. */
+(function () {
+  /* Con secciones sticky, TODAS las APIs de posicion (offsetTop,
+     getBoundingClientRect) devuelven la posicion fijada actual, no la del
+     documento. Por eso el destino se calcula sumando ALTURAS de las
+     secciones anteriores: la altura no se ve afectada por el fijado. */
+  function docTop(target) {
+    var main = document.querySelector('main');
+    if (!main || !main.contains(target)) {
+      // Fuera de main (p. ej. footer): sumar alturas de todo main
+      if (target === null) return 0;
+      var yy = 0;
+      Array.prototype.forEach.call(main ? main.children : [], function (ch) {
+        yy += ch.offsetHeight;
+      });
+      return yy;
+    }
+    var y = 0;
+    var kids = main.children;
+    for (var i = 0; i < kids.length; i++) {
+      if (kids[i] === target || kids[i].contains(target)) break;
+      y += kids[i].offsetHeight;
+    }
+    return y;
+  }
+
+  function goTo(id) {
+    var t = id ? document.getElementById(id) : null;
+    var y = t ? docTop(t) : 0;
+    var lenis = window.__andotekLenis;
+
+    if (lenis && typeof lenis.scrollTo === 'function') {
+      lenis.scrollTo(y, { duration: 1.1, lock: true, force: true });
+      // Red de seguridad: si el desplazamiento no llego, se corrige.
+      setTimeout(function () {
+        if (Math.abs(window.scrollY - y) > 6) {
+          window.scrollTo(0, y);
+          if (typeof lenis.resize === 'function') lenis.resize();
+        }
+      }, 1400);
+    } else {
+      window.scrollTo({ top: y, behavior: 'smooth' });
+    }
+  }
+
+  function bind() {
+    document.querySelectorAll('a[href^="#"]').forEach(function (a) {
+      a.addEventListener('click', function (e) {
+        var href = a.getAttribute('href') || '';
+        var id = href.slice(1);
+        e.preventDefault();
+        goTo(id);
+        if (id && history.replaceState) history.replaceState(null, '', '#' + id);
+        var mm = document.getElementById('mobile-menu');
+        if (mm) mm.classList.add('hidden');
+      });
+    });
+  }
+
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', bind);
+  } else {
+    bind();
+  }
+})();
+</script>
+<!-- Boton flotante de WhatsApp -->
+<style>
+  #waFloat {
+    position: fixed; right: 22px; bottom: 22px; z-index: 60;
+    width: 58px; height: 58px; border-radius: 50%;
+    background: #25D366; display: flex; align-items: center; justify-content: center;
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.28);
+    transition: transform .2s ease, background .2s ease;
+  }
+  #waFloat:hover { transform: scale(1.07); background: #1ebe5b; }
+  #waFloat:focus-visible { outline: 3px solid #9d4300; outline-offset: 3px; }
+  @media (max-width: 767px) { #waFloat { right: 16px; bottom: 16px; width: 54px; height: 54px; } }
+</style>
+<a id="waFloat" href="https://wa.me/56942453871?text=Hola%20Josu%C3%A9%2C%20vengo%20de%20andotek.cl%20y%20me%20gustar%C3%ADa%20conversar%20sobre%20mi%20operaci%C3%B3n." target="_blank" rel="noopener" aria-label="Escríbenos por WhatsApp">
+  <svg width="30" height="30" viewBox="0 0 24 24" fill="#ffffff" aria-hidden="true"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.297-.347.446-.52.149-.174.198-.298.297-.497.1-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+</a>
 </body>
 </html>
