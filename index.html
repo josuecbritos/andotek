@@ -61,6 +61,17 @@
 <link rel="icon" type="image/svg+xml" href="favicon.svg"/>
 <link rel="stylesheet" href="styles.css"/>
 <style>
+/* Tamaño de la foto del fundador. Va inline porque el CSS compilado
+   solo contiene los anchos que existian al momento de compilarlo. */
+#fotoJosue { width: 170px; display: block; }
+@media (min-width: 768px) {
+  #fotoJosue { width: 270px; }
+  /* En desktop, la bio se centra verticalmente respecto a la foto
+     y el canal entre ambos se acorta para que se lean como un bloque. */
+  #quienRow { align-items: center; gap: 48px; }
+}
+</style>
+<style>
 /* Capa de movimiento "Precision, no espectaculo".
    Inline porque estas clases las usa el script y Tailwind las purgaria. */
 html.lenis, html.lenis body { height: auto; }
@@ -273,14 +284,14 @@ html.lenis, html.lenis body { height: auto; }
 <!-- QUIÉN ESTÁ DETRÁS -->
 <section id="quien" class="full-section bg-white border-b border-outline-variant">
 <div class="max-w-max-width mx-auto px-margin-mobile md:px-margin-desktop sec-inner">
-    <div class="flex flex-col md:flex-row gap-10 md:gap-16 items-start">
+    <h2 class="font-headline-lg text-headline-lg text-primary mb-8">Quiénes somos</h2>
+    <div id="quienRow" class="flex flex-col md:flex-row gap-10 md:gap-16 items-start">
         <!-- Foto -->
         <div class="shrink-0">
-            <img data-drift="-18" src="josue-foto.jpg" alt="Josué Brito, fundador de Andotek" class="w-[130px] md:w-[170px] rounded-lg border border-outline-variant"/>
+            <img id="fotoJosue" data-drift="-18" src="josue-foto.jpg" alt="Josué Brito, fundador de Andotek" class="rounded-lg border border-outline-variant"/>
         </div>
         <!-- Bio -->
         <div class="flex-1">
-            <h2 class="font-headline-lg text-headline-lg text-primary mb-2">Quiénes somos</h2>
             <div class="flex items-baseline gap-3 mb-5">
                 <span class="font-headline-lg text-[20px] font-semibold text-primary">Josué Brito</span>
                 <span class="font-label-sm text-label-sm uppercase tracking-widest text-secondary">Fundador</span>
