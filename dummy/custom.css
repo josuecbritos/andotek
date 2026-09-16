@@ -1,0 +1,219 @@
+/* ===========================================================
+   ANDOTEK — Estilos propios
+   -----------------------------------------------------------
+   Este archivo se escribe a mano y se carga DESPUES de
+   styles.css (generado por Tailwind). Tailwind nunca lo toca,
+   por lo que aqui viven todos los ajustes que el compilado no
+   puede expresar.
+
+   Orden y unica fuente de verdad:
+     1. Base        — aplica en todos los anchos
+     2. Componentes — piezas con estilo propio
+     3. Escritorio  — solo >= 768px
+     4. Movil       — solo <= 767px
+
+   Regla: cada propiedad se define UNA sola vez por capa.
+   =========================================================== */
+
+
+/* ===========================================================
+   1. BASE
+   =========================================================== */
+
+/* Lenis (scroll con inercia) necesita el alto natural */
+html.lenis,
+html.lenis body { height: auto; }
+.lenis.lenis-smooth { scroll-behavior: auto !important; }
+
+/* Foto del fundador: valor base, el escritorio lo amplia */
+#fotoJosue { width: 170px; display: block; }
+
+/* Separacion entre parrafos dentro de los testimonios */
+#testiGrid p + p { margin-top: 9px; }
+
+/* Latido del indicador "Linea operando".
+   El pulso de Tailwind solo baja al 50% y no se percibe. */
+@keyframes chipPulse {
+  0%, 100% { opacity: 1; }
+  50%      { opacity: .25; }
+}
+#lineChip .animate-pulse { animation: chipPulse 1.6s ease-in-out infinite; }
+
+
+/* ===========================================================
+   2. COMPONENTES
+   =========================================================== */
+
+/* --- Boton flotante de WhatsApp --- */
+#waFloat {
+  position: fixed;
+  right: 22px;
+  bottom: 22px;
+  z-index: 60;
+  width: 58px;
+  height: 58px;
+  border-radius: 50%;
+  background: #25D366;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 6px 20px rgba(0, 0, 0, .28);
+  transition: transform .2s ease, background .2s ease;
+}
+#waFloat:hover { transform: scale(1.07); background: #1ebe5b; }
+#waFloat:focus-visible { outline: 3px solid #9d4300; outline-offset: 3px; }
+
+/* --- Elevacion al pasar el cursor (solo con mouse) --- */
+@media (hover: hover) {
+  .lift { transition: transform .2s ease, box-shadow .2s ease, border-color .2s ease; }
+  .lift:hover { transform: translateY(-2px); box-shadow: 0 8px 24px rgba(0, 0, 0, .08); }
+}
+
+/* --- Puntos indicadores de los rieles deslizables (movil) --- */
+.riel-dots { display: none; }
+
+
+/* ===========================================================
+   3. ESCRITORIO  (>= 768px)
+   =========================================================== */
+@media (min-width: 768px) {
+
+  /* El header es fijo y mide 80px: cada seccion reserva ese
+     espacio para que su contenido nunca quede tapado. */
+  .full-section { padding-top: 80px; }
+
+  /* Quienes somos */
+  #fotoJosue { width: 270px; }
+  #quienRow  { align-items: center; gap: 48px; }
+
+  /* Testimonios: tres por fila, compactos */
+  #testiGrid { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+  #testiGrid > div { padding: 22px 22px 20px; }
+  #testiGrid > div > div:first-child { font-size: 30px; margin-bottom: 8px; }
+  #testiGrid p { font-size: 12px; }
+  #testiGrid p + p { margin-top: 9px; }
+  #testiGrid .font-label-sm { font-size: 10px; }
+  #testiGrid img { width: 60px; height: 60px; }
+}
+
+
+/* ===========================================================
+   4. MOVIL  (<= 767px)
+   -----------------------------------------------------------
+   En telefono la pagina es un documento vertical, no un
+   carrusel de pantallas completas. Solo el hero ocupa la
+   pantalla; el resto mide lo que mide su contenido.
+   =========================================================== */
+@media (max-width: 767px) {
+
+  /* --- 4.1 Nada se desborda a lo ancho --- */
+  html, body { overflow-x: hidden; }
+  img, svg { max-width: 100%; }
+
+  /* --- 4.2 Ritmo vertical --- */
+  /* El contenido se alinea arriba, no al centro: si una seccion es mas
+     alta que la pantalla, el centrado de flexbox la desborda hacia
+     arriba y el inicio queda inalcanzable bajo el header. */
+  .full-section {
+    min-height: 0;
+    justify-content: flex-start;
+    padding-top: 48px;
+    padding-bottom: 48px;
+  }
+  /* El hero si ocupa la pantalla, reservando el header (80px) */
+  #hero.full-section {
+    min-height: 100vh;
+    padding-top: 104px;
+    padding-bottom: 40px;
+  }
+  /* Al navegar por los enlaces, el header no tapa el titulo */
+  section[id] { scroll-margin-top: 80px; }
+
+  /* Margen lateral algo mas holgado que el minimo */
+  .px-margin-mobile { padding-left: 20px; padding-right: 20px; }
+
+  /* --- 4.3 Escala de titulares (el cuerpo ya esta en 16px) --- */
+  .text-headline-xl { font-size: 30px; line-height: 36px; }
+  .text-headline-lg { font-size: 24px; line-height: 30px; }
+
+  /* --- 4.4 Hero: el dashboard tambien se ve en el telefono --- */
+  #heroVisual { margin-top: 28px; }
+
+  /* El panel deja de tener proporcion fija y crece con su contenido */
+  #heroVisual > div:first-child {
+    aspect-ratio: auto;
+    padding: 16px;
+  }
+  /* Los cuatro indicadores OEE pasan a dos por fila */
+  #heroVisual .grid-cols-4 { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  #heroVisual .grid-cols-4 span { font-size: 10px; }
+
+  /* El grafico es un SVG: sus medidas son del viewBox, asi que
+     el texto y el trazo se agrandan para compensar la escala. */
+  #heroVisual svg { height: 96px; }
+  #heroVisual svg text { font-size: 19px; }
+  #heroVisual svg path[stroke] { stroke-width: 3.5; }
+
+  /* El recuadro "+15 años" deja de flotar y pasa debajo */
+  #heroVisual > div:last-child {
+    position: static;
+    margin-top: 16px;
+    padding: 18px 20px;
+  }
+
+  /* --- 4.5 Tarjetas que se deslizan al costado --- */
+  #servGrid,
+  #testiGrid {
+    display: flex;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    -webkit-overflow-scrolling: touch;
+    gap: 12px;
+    padding-bottom: 4px;
+    scrollbar-width: none;
+  }
+  #servGrid::-webkit-scrollbar,
+  #testiGrid::-webkit-scrollbar { display: none; }
+
+  /* Cada tarjeta ocupa el 85%: la siguiente asoma e invita a deslizar */
+  #servGrid > div,
+  #testiGrid > div {
+    flex: 0 0 85%;
+    scroll-snap-align: start;
+  }
+  #servGrid  > div { padding: 18px; }
+  #testiGrid > div { padding: 20px; }
+  #testiGrid p { font-size: 14px; line-height: 22px; }
+  #testiGrid p + p { margin-top: 10px; }
+  #testiGrid .font-label-sm { font-size: 12px; }
+  #testiGrid img { width: 46px; height: 46px; }
+  #testiGrid > div > div:first-child { font-size: 30px; }
+
+  /* Puntos indicadores */
+  .riel-dots {
+    display: flex;
+    gap: 6px;
+    justify-content: center;
+    margin-top: 16px;
+  }
+
+  /* --- 4.6 Formulario --- */
+  /* La columna de datos y el formulario se separan menos que en escritorio */
+  #contacto .gap-16 { gap: 32px; }
+  /* 16px es el minimo: bajo ese tamano Safari hace zoom al enfocar */
+  #contactForm input,
+  #contactForm textarea {
+    font-size: 16px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+  }
+  #contactForm label { font-size: 12px; }
+
+  /* --- 4.7 Areas tactiles --- */
+  #mobile-menu a { display: block; padding: 12px 0; }
+
+  /* --- 4.8 Boton de WhatsApp: mas discreto, sin tapar contenido --- */
+  #waFloat { width: 48px; height: 48px; right: 16px; bottom: 16px; }
+  #waFloat svg { width: 25px; height: 25px; }
+  footer { padding-bottom: 76px; }
+}
