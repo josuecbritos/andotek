@@ -136,9 +136,11 @@ html.lenis body { height: auto; }
   .full-section {
     min-height: 0;
     justify-content: flex-start;
-    padding-top: 96px;
-    padding-bottom: 56px;
+    padding-top: 56px;
+    padding-bottom: 48px;
   }
+  /* El hero arranca justo bajo el header fijo (80px) */
+  #hero.full-section { padding-top: 96px; }
   /* 80px del header fijo + aire, para que ningun titulo quede tapado */
   section[id] { scroll-margin-top: 80px; }
 
@@ -175,6 +177,25 @@ html.lenis body { height: auto; }
 
   /* Los servicios quedan mas juntos al estar plegados */
   #servGrid { gap: 10px; }
+
+  /* El CTA del hero se oculta: la barra inferior fija ya lo ofrece
+     siempre, y asi el dashboard cabe completo en la primera pantalla. */
+  .ctaHero { display: none; }
+
+  /* Dashboard del hero: altura natural y contenido compacto */
+  #heroVisual { margin-top: 20px; }
+  #heroVisual > div:first-child { aspect-ratio: auto; padding: 16px; }
+  #heroVisual .grid-cols-4 { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  /* El contenedor del grafico usa flex-1: sin proporcion fija se queda
+     sin alto, asi que se le da uno explicito. */
+  #heroVisual .flex-1 { min-height: 92px; }
+  #heroVisual svg { height: 92px; }
+  #heroVisual svg text { font-size: 19px; }
+  #heroVisual > div:last-child {
+    position: static;
+    margin-top: 16px;
+    padding: 16px 18px;
+  }
 
   /* Titulares a escala de telefono */
   .text-headline-xl { font-size: 30px; line-height: 36px; }
