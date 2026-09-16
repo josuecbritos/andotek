@@ -3,7 +3,6 @@
 <head>
 <meta charset="utf-8"/>
 <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
-<meta name="robots" content="noindex, nofollow"/>
 <title>Andotek | Tecnología que nace en la operación</title>
 <meta name="description" content="Andotek crea herramientas digitales que se adaptan a tu operación. Digitalización de mediciones, dashboards en tiempo real, automatización y auditorías. Tecnología que nace en la operación."/>
 <meta property="og:title" content="Andotek | Tecnología que nace en la operación"/>
@@ -14,51 +13,118 @@
 <meta property="og:url" content="https://andotek.cl"/>
 <meta property="og:type" content="website"/>
 <meta property="og:locale" content="es_CL"/>
+<link rel="canonical" href="https://andotek.cl/"/>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "ProfessionalService",
+  "@id": "https://andotek.cl/#organizacion",
+  "name": "Andotek",
+  "url": "https://andotek.cl/",
+  "logo": "https://andotek.cl/og-image.png",
+  "image": "https://andotek.cl/og-image.png",
+  "slogan": "Tecnología que nace en la operación",
+  "description": "Andotek crea herramientas digitales a medida para operaciones: digitalización de mediciones, dashboards en tiempo real, automatización de gestión e inteligencia artificial, y checklists y auditorías digitales.",
+  "email": "contacto@andotek.cl",
+  "founder": {
+    "@type": "Person",
+    "name": "Josué Brito",
+    "jobTitle": "Fundador",
+    "sameAs": "https://www.linkedin.com/in/josue-brito-mejora-continua/"
+  },
+  "address": {
+    "@type": "PostalAddress",
+    "addressLocality": "Santiago",
+    "addressCountry": "CL"
+  },
+  "areaServed": [
+    { "@type": "Country", "name": "Chile" },
+    { "@type": "Place", "name": "Sudamérica" }
+  ],
+  "knowsLanguage": ["es", "en"],
+  "hasOfferCatalog": {
+    "@type": "OfferCatalog",
+    "name": "Servicios",
+    "itemListElement": [
+      { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Digitalización de mediciones", "description": "Digitalización de registros manuales con resultados en tiempo real e integración con sistemas y sensores." } },
+      { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Dashboards operacionales en tiempo real", "description": "Visualización del desempeño de plantas, tiendas y equipos en el momento." } },
+      { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Automatización de gestión e inteligencia artificial", "description": "Reemplazo de planillas y procesos manuales por sistemas y automatizaciones inteligentes." } },
+      { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Checklists y auditorías digitales", "description": "5S, auditorías de proceso e inspecciones de calidad medidas en terreno." } }
+    ]
+  }
+}
+</script>
 <meta name="twitter:card" content="summary_large_image"/>
 <meta name="twitter:title" content="Andotek | Tecnología que nace en la operación"/>
 <meta name="twitter:description" content="Creamos herramientas digitales que se adaptan a tu operación, no al revés."/>
 <meta name="twitter:image" content="https://andotek.cl/og-image.png"/>
-<link rel="icon" type="image/svg+xml" href="/favicon.svg"/>
-<link rel="stylesheet" href="/styles.css"/>
+<link rel="icon" type="image/svg+xml" href="favicon.svg"/>
+<link rel="stylesheet" href="styles.css"/>
 <style>
 /* Tamaño de la foto del fundador. Va inline porque el CSS compilado
    solo contiene los anchos que existian al momento de compilarlo. */
 #fotoJosue { width: 170px; display: block; }
 
-/* ====== MOBILE (<768px) ======
-   Escala tipografica y espaciado propios para telefono. El CSS compilado
-   define un solo tamano para todo, pensado para escritorio. */
+/* ====== DISEÑO MOBILE (<768px) ======
+   En telefono la pagina es un documento vertical, no un carrusel de
+   pantallas. Solo el hero ocupa la pantalla completa. */
 @media (max-width: 767px) {
-  /* Las secciones reservan el alto del header fijo (80px) */
-  .full-section { padding-top: 96px; padding-bottom: 48px; }
 
-  /* Titulares: bajan a escala de telefono */
-  .text-headline-xl { font-size: 34px; line-height: 40px; }
-  .text-headline-lg { font-size: 26px; line-height: 32px; }
+  /* --- 1. Ritmo de secciones: miden lo que mide su contenido --- */
+  .full-section { min-height: 0; padding-top: 48px; padding-bottom: 48px; }
+  /* El hero si ocupa la pantalla (menos el header fijo de 80px) */
+  #hero.full-section { min-height: calc(100vh - 80px); padding-top: 24px; padding-bottom: 32px; }
+  /* Al navegar con los enlaces, el header no tapa el titulo */
+  section[id] { scroll-margin-top: 80px; }
 
-  /* Cuerpo: nunca por debajo de 16px */
-  .text-body-lg { font-size: 17px; line-height: 26px; }
+  /* --- 2. Escala tipografica de telefono --- */
+  .text-headline-xl { font-size: 30px; line-height: 36px; }
+  .text-headline-lg { font-size: 24px; line-height: 30px; }
+  .text-body-lg { font-size: 16px; line-height: 25px; }
   .text-body-md { font-size: 16px; line-height: 25px; }
+  .text-label-sm { font-size: 12px; }
 
-  /* Testimonios: legibles, no miniaturas */
+  /* --- 3. Hero: dashboard visible y compacto --- */
+  #heroVisual { margin-top: 24px; }
+  #heroVisual .aspect-\[4\/3\] { aspect-ratio: auto; padding: 14px; }
+  #heroVisual svg { height: 70px; }
+  #heroVisual .absolute { position: static; margin-top: 14px; padding: 14px 16px; }
+
+  /* --- 4. Tarjetas que se deslizan al costado --- */
+  #servGrid, #testiGrid {
+    display: flex;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    -webkit-overflow-scrolling: touch;
+    gap: 12px;
+    padding-bottom: 12px;
+    margin-right: -20px;   /* la siguiente tarjeta asoma por el borde */
+    scrollbar-width: none;
+  }
+  #servGrid::-webkit-scrollbar, #testiGrid::-webkit-scrollbar { display: none; }
+  #servGrid > div, #testiGrid > div {
+    flex: 0 0 85%;
+    scroll-snap-align: start;
+  }
+  #servGrid > div { padding: 18px; }
   #testiGrid > div { padding: 20px; }
-  #testiGrid > div > div:first-child { font-size: 34px; }
-  #testiGrid p { font-size: 15px; line-height: 23px; }
+  #testiGrid p { font-size: 14px; line-height: 22px; }
+  #testiGrid img { width: 46px; height: 46px; }
   #testiGrid .font-label-sm { font-size: 12px; }
-  #testiGrid img { width: 52px; height: 52px; }
+  #testiGrid > div > div:first-child { font-size: 30px; }
 
-  /* Formulario: 16px evita el zoom automatico de iOS al enfocar */
+  /* --- 5. Formulario: 16px evita el zoom automatico de iOS --- */
   #contactForm input, #contactForm textarea { font-size: 16px; padding-top: 10px; padding-bottom: 10px; }
   #contactForm label { font-size: 12px; }
 
-  /* Areas tactiles comodas en la navegacion */
+  /* --- 6. Boton de WhatsApp: mas chico, sin tapar el contenido --- */
+  #waFloat { width: 46px; height: 46px; right: 14px; bottom: 14px; }
+  #waFloat svg { width: 24px; height: 24px; }
+  footer { padding-bottom: 72px; }
+
+  /* --- 7. Navegacion y margenes --- */
   #mobile-menu a { display: block; padding: 12px 0; }
-  footer a { display: inline-block; padding: 6px 0; }
-
-  /* Margen lateral algo mas amplio */
   .px-margin-mobile { padding-left: 20px; padding-right: 20px; }
-
-  /* Nada se desborda a lo ancho */
   img, svg { max-width: 100%; }
 }
 
@@ -155,7 +221,7 @@ html.lenis, html.lenis body { height: auto; }
                 </a>
             </div>
         </div>
-        <div class="relative hidden md:block">
+        <div class="relative" id="heroVisual">
             <div data-drift="-26" class="aspect-[4/3] overflow-hidden border border-outline-variant rounded-lg p-6 flex flex-col" style="background: #111113;">
                 <!-- Panel header -->
                 <div class="flex items-center justify-between mb-4">
@@ -231,7 +297,7 @@ html.lenis, html.lenis body { height: auto; }
         <h2 class="font-headline-lg text-headline-lg text-primary mb-2">Creamos herramientas digitales que se adaptan a tu operación, no al revés.</h2>
         <p class="font-body-md text-[14px] text-on-surface-variant">Cada operación es distinta. Por eso no vendemos software genérico: diseñamos y construimos soluciones a la medida que resuelven problemas reales de gestión operacional.</p>
     </div>
-    <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+    <div id="servGrid" class="grid grid-cols-1 md:grid-cols-2 gap-4">
         <div class="lift border border-outline-variant px-6 py-5 hover:border-secondary transition-colors group flex gap-5 items-start">
             <span class="material-symbols-outlined text-2xl text-secondary mt-1 shrink-0">sensors</span>
             <div>
@@ -304,7 +370,7 @@ html.lenis, html.lenis body { height: auto; }
     <div id="quienRow" class="flex flex-col md:flex-row gap-10 md:gap-16 items-start">
         <!-- Foto -->
         <div class="shrink-0">
-            <img id="fotoJosue" data-drift="-18" src="/josue-foto.jpg" alt="Josué Brito, fundador de Andotek" class="rounded-lg border border-outline-variant"/>
+            <img id="fotoJosue" data-drift="-18" src="josue-foto.jpg" alt="Josué Brito, fundador de Andotek" class="rounded-lg border border-outline-variant"/>
         </div>
         <!-- Bio -->
         <div class="flex-1">
@@ -377,7 +443,7 @@ html.lenis, html.lenis body { height: auto; }
             <div class="font-label-md text-[40px] leading-[0.6] text-secondary mb-3" aria-hidden="true">&ldquo;</div>
             <div class="font-body-md text-[13px] text-on-surface leading-relaxed flex-1"><p>Pasamos de una multiplicidad de tareas independientes a una <strong class="font-semibold">forma de trabajo unificada</strong>, con <strong class="font-semibold">herramientas digitales que nos dieron visibilidad de los procesos y datos</strong> para tomar mejores decisiones en la planta.</p><p>Hacer las cosas ordenadas, controladas y visibles nos llevó a aumentar los procesos de carga en <strong class="font-semibold">123%</strong> y la producción en <strong class="font-semibold">27%</strong> en las naves intervenidas.</p><p>El trabajo se hizo con <strong class="font-semibold">calidad profesional y cercanía</strong>: fue muy fácil para todo el equipo.</p></div>
             <div class="flex items-center gap-3 mt-6 pt-5 border-t border-outline-variant">
-                <img src="/testi-pavez.jpg" alt="José Pavez" class="w-10 h-10 rounded-full shrink-0" style="object-fit: cover;"/>
+                <img src="testi-pavez.jpg" alt="José Pavez" class="w-10 h-10 rounded-full shrink-0" style="object-fit: cover;"/>
                 <div>
                     <p class="font-body-md text-[13px] font-semibold text-primary leading-tight">José Pavez</p>
                     <p class="font-label-sm text-label-sm text-industrial-gray">Gerente de Operaciones Zona Centro Sur · Ambipar</p>
@@ -389,7 +455,7 @@ html.lenis, html.lenis body { height: auto; }
             <div class="font-label-md text-[40px] leading-[0.6] text-secondary mb-3" aria-hidden="true">&ldquo;</div>
             <div class="font-body-md text-[13px] text-on-surface leading-relaxed flex-1"><p>No tenía nada: solo la idea del negocio y la necesidad de llevarla a una app para probar si había tracción. En <strong class="font-semibold">dos meses</strong> tuve un <strong class="font-semibold">producto funcional</strong> que me permitió hacer las pruebas que quería.</p><p>El proceso fue de mucha interacción; no era llegar y pedir algo para recibirlo tal cual: hubo <strong class="font-semibold">retroalimentación, ideas e iniciativa</strong>.</p><p>La <strong class="font-semibold">metodología y la estructura de trabajo ayudan a ordenarse</strong>. Y suma que no es solo lo digital: hay un <strong class="font-semibold">bagaje operativo</strong> detrás.</p></div>
             <div class="flex items-center gap-3 mt-6 pt-5 border-t border-outline-variant">
-                <img src="/testi-claps.jpg" alt="Felipe Claps" class="w-10 h-10 rounded-full shrink-0" style="object-fit: cover;"/>
+                <img src="testi-claps.jpg" alt="Felipe Claps" class="w-10 h-10 rounded-full shrink-0" style="object-fit: cover;"/>
                 <div>
                     <p class="font-body-md text-[13px] font-semibold text-primary leading-tight">Felipe Claps</p>
                     <p class="font-label-sm text-label-sm text-industrial-gray">Founder · Huella Laboral</p>
@@ -401,7 +467,7 @@ html.lenis, html.lenis body { height: auto; }
             <div class="font-label-md text-[40px] leading-[0.6] text-secondary mb-3" aria-hidden="true">&ldquo;</div>
             <div class="font-body-md text-[13px] text-on-surface leading-relaxed flex-1"><p>[EJEMPLO — reemplazar] Llevábamos años registrando las mediciones en papel y recién al cierre de mes sabíamos cómo nos había ido.</p><p>Hoy el equipo <strong class="font-semibold">ve el dato en el momento</strong> y corrige en el turno.</p><p>Bajamos las detenciones no registradas de <strong class="font-semibold">40% a menos de 5%</strong>.</p></div>
             <div class="flex items-center gap-3 mt-6 pt-5 border-t border-outline-variant">
-                <img src="/testi-almarza.jpg" alt="Cristian Almarza" class="w-10 h-10 rounded-full shrink-0" style="object-fit: cover;"/>
+                <img src="testi-almarza.jpg" alt="Cristian Almarza" class="w-10 h-10 rounded-full shrink-0" style="object-fit: cover;"/>
                 <div>
                     <p class="font-body-md text-[13px] font-semibold text-primary leading-tight">Cristian Almarza</p>
                     <p class="font-label-sm text-label-sm text-industrial-gray">Director Ejecutivo · Educa Switch</p>
@@ -809,6 +875,61 @@ document.getElementById('cfBtn').addEventListener('click', async () => {
 <a id="waFloat" href="https://wa.me/56942453871?text=Hola%20Josu%C3%A9%2C%20vengo%20de%20andotek.cl%20y%20me%20gustar%C3%ADa%20conversar%20sobre%20mi%20operaci%C3%B3n." target="_blank" rel="noopener" aria-label="Escríbenos por WhatsApp">
   <svg width="30" height="30" viewBox="0 0 24 24" fill="#ffffff" aria-hidden="true"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.297-.347.446-.52.149-.174.198-.298.297-.497.1-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
 </a>
-<div style="position:fixed;left:12px;bottom:12px;z-index:70;background:#fd761a;color:#fff;font-family:monospace;font-size:10px;letter-spacing:.1em;padding:5px 10px;border-radius:3px;">PREVIEW</div>
+<script>
+/* Puntos indicadores para los rieles deslizables en movil.
+   Sin una pista visual, el usuario no descubre que hay mas tarjetas al lado. */
+(function () {
+  var movil = window.matchMedia('(max-width: 767px)');
+
+  function montar(id) {
+    var riel = document.getElementById(id);
+    if (!riel || riel.dataset.dots) return;
+    var n = riel.children.length;
+    if (n < 2) return;
+
+    var barra = document.createElement('div');
+    barra.className = 'riel-dots';
+    barra.style.cssText = 'display:flex;gap:6px;justify-content:center;margin-top:14px;';
+    for (var i = 0; i < n; i++) {
+      var p = document.createElement('span');
+      p.style.cssText = 'width:6px;height:6px;border-radius:50%;background:#c7c6ca;transition:all .25s;';
+      barra.appendChild(p);
+    }
+    riel.parentNode.insertBefore(barra, riel.nextSibling);
+    riel.dataset.dots = '1';
+
+    function pintar() {
+      var idx = Math.round(riel.scrollLeft / (riel.scrollWidth / n));
+      Array.prototype.forEach.call(barra.children, function (p, i) {
+        var on = i === idx;
+        p.style.background = on ? '#fd761a' : '#c7c6ca';
+        p.style.width = on ? '18px' : '6px';
+        p.style.borderRadius = on ? '3px' : '50%';
+      });
+    }
+    riel.addEventListener('scroll', function () {
+      window.requestAnimationFrame(pintar);
+    }, { passive: true });
+    pintar();
+  }
+
+  function aplicar() {
+    if (!movil.matches) {
+      document.querySelectorAll('.riel-dots').forEach(function (d) { d.remove(); });
+      ['servGrid', 'testiGrid'].forEach(function (id) {
+        var r = document.getElementById(id);
+        if (r) delete r.dataset.dots;
+      });
+      return;
+    }
+    ['servGrid', 'testiGrid'].forEach(montar);
+  }
+
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', aplicar);
+  } else { aplicar(); }
+  movil.addEventListener('change', aplicar);
+})();
+</script>
 </body>
 </html>
