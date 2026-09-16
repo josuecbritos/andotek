@@ -60,119 +60,7 @@
 <meta name="twitter:image" content="https://andotek.cl/og-image.png"/>
 <link rel="icon" type="image/svg+xml" href="favicon.svg"/>
 <link rel="stylesheet" href="styles.css"/>
-<style>
-/* Tamaño de la foto del fundador. Va inline porque el CSS compilado
-   solo contiene los anchos que existian al momento de compilarlo. */
-#fotoJosue { width: 170px; display: block; }
-
-/* ====== DISEÑO MOBILE (<768px) ======
-   En telefono la pagina es un documento vertical, no un carrusel de
-   pantallas. Solo el hero ocupa la pantalla completa. */
-@media (max-width: 767px) {
-
-  /* --- 1. Ritmo de secciones: miden lo que mide su contenido --- */
-  .full-section { min-height: 0; padding-top: 48px; padding-bottom: 48px; }
-  /* El hero si ocupa la pantalla (menos el header fijo de 80px) */
-  #hero.full-section { min-height: calc(100vh - 80px); padding-top: 24px; padding-bottom: 32px; }
-  /* Al navegar con los enlaces, el header no tapa el titulo */
-  section[id] { scroll-margin-top: 80px; }
-
-  /* --- 2. Escala tipografica de telefono --- */
-  .text-headline-xl { font-size: 30px; line-height: 36px; }
-  .text-headline-lg { font-size: 24px; line-height: 30px; }
-  .text-body-lg { font-size: 16px; line-height: 25px; }
-  .text-body-md { font-size: 16px; line-height: 25px; }
-  .text-label-sm { font-size: 12px; }
-
-  /* --- 3. Hero: dashboard visible y compacto --- */
-  #heroVisual { margin-top: 24px; }
-  #heroVisual .aspect-\[4\/3\] { aspect-ratio: auto; padding: 14px; }
-  #heroVisual svg { height: 70px; }
-  #heroVisual .absolute { position: static; margin-top: 14px; padding: 14px 16px; }
-
-  /* --- 4. Tarjetas que se deslizan al costado --- */
-  #servGrid, #testiGrid {
-    display: flex;
-    overflow-x: auto;
-    scroll-snap-type: x mandatory;
-    -webkit-overflow-scrolling: touch;
-    gap: 12px;
-    padding-bottom: 12px;
-    margin-right: -20px;   /* la siguiente tarjeta asoma por el borde */
-    scrollbar-width: none;
-  }
-  #servGrid::-webkit-scrollbar, #testiGrid::-webkit-scrollbar { display: none; }
-  #servGrid > div, #testiGrid > div {
-    flex: 0 0 85%;
-    scroll-snap-align: start;
-  }
-  #servGrid > div { padding: 18px; }
-  #testiGrid > div { padding: 20px; }
-  #testiGrid p { font-size: 14px; line-height: 22px; }
-  #testiGrid img { width: 46px; height: 46px; }
-  #testiGrid .font-label-sm { font-size: 12px; }
-  #testiGrid > div > div:first-child { font-size: 30px; }
-
-  /* --- 5. Formulario: 16px evita el zoom automatico de iOS --- */
-  #contactForm input, #contactForm textarea { font-size: 16px; padding-top: 10px; padding-bottom: 10px; }
-  #contactForm label { font-size: 12px; }
-
-  /* --- 6. Boton de WhatsApp: mas chico, sin tapar el contenido --- */
-  #waFloat { width: 46px; height: 46px; right: 14px; bottom: 14px; }
-  #waFloat svg { width: 24px; height: 24px; }
-  footer { padding-bottom: 72px; }
-
-  /* --- 7. Navegacion y margenes --- */
-  #mobile-menu a { display: block; padding: 12px 0; }
-  .px-margin-mobile { padding-left: 20px; padding-right: 20px; }
-  img, svg { max-width: 100%; }
-}
-
-
-/* Testimonios en mobile: separacion entre parrafos (los estilos de
-   escritorio viven en la media query de abajo) */
-#testiGrid p + p { margin-top: 9px; }
-@media (min-width: 768px) {
-  /* El header es fijo (80px): las secciones reservan ese espacio para que
-     su contenido nunca quede tapado al navegar con los enlaces. */
-  .full-section { padding-top: 80px; }
-  #fotoJosue { width: 270px; }
-  /* En desktop, la bio se centra verticalmente respecto a la foto
-     y el canal entre ambos se acorta para que se lean como un bloque. */
-  #quienRow { align-items: center; gap: 48px; }
-  /* Tres testimonios por fila en desktop */
-  #testiGrid { grid-template-columns: repeat(3, minmax(0, 1fr)); }
-  /* Tarjetas mas compactas para que la seccion quepa en una pantalla */
-  #testiGrid > div { padding: 22px 22px 20px; }
-  #testiGrid > div > div:first-child { font-size: 30px; margin-bottom: 8px; }
-  /* Escala tipografica de las tarjetas (no depende del CSS compilado) */
-  #testiGrid p { font-size: 12px; }
-  #testiGrid .font-label-sm { font-size: 10px; }
-  #testiGrid p + p { margin-top: 9px; }
-  /* Fotos de los testimonios: mas presencia para que se sientan reales */
-  #testiGrid img { width: 60px; height: 60px; }
-}
-</style>
-<style>
-/* Capa de movimiento "Precision, no espectaculo".
-   Inline porque estas clases las usa el script y Tailwind las purgaria. */
-html.lenis, html.lenis body { height: auto; }
-/* Suavizado nativo solo donde no actua Lenis; en desktop se pelearian
-   por la posicion y el desplazamiento se corta a medio camino. */
-@media (max-width: 767px) { html { scroll-behavior: smooth; } }
-.lenis.lenis-smooth { scroll-behavior: auto !important; }
-
-/* Latido visible del indicador "Linea operando" (el pulso por defecto
-   de Tailwind solo baja al 50% y apenas se percibe) */
-@keyframes chipPulse { 0%, 100% { opacity: 1; } 50% { opacity: 0.25; } }
-#lineChip .animate-pulse { animation: chipPulse 1.6s ease-in-out infinite; }
-
-/* Micro-interaccion al hover (solo dispositivos con cursor) */
-@media (hover: hover) {
-  .lift { transition: transform .2s ease, box-shadow .2s ease, border-color .2s ease; }
-  .lift:hover { transform: translateY(-2px); box-shadow: 0 8px 24px rgba(0,0,0,.08); }
-}
-</style>
+<link rel="stylesheet" href="custom.css"/>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet"/>
 <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
 </head>
@@ -657,7 +545,7 @@ document.getElementById('cfBtn').addEventListener('click', async () => {
   }
 
   /* ---- Entradas: mismo tratamiento en toda la pagina ---- */
-  mm.add('(prefers-reduced-motion: no-preference)', function () {
+  mm.add('(min-width: 768px) and (prefers-reduced-motion: no-preference)', function () {
     gsap.utils.toArray('.full-section').forEach(function (sec, i) {
       var units = unitsOf(sec);
       if (!units.length) return;
@@ -860,18 +748,6 @@ document.getElementById('cfBtn').addEventListener('click', async () => {
 })();
 </script>
 <!-- Boton flotante de WhatsApp -->
-<style>
-  #waFloat {
-    position: fixed; right: 22px; bottom: 22px; z-index: 60;
-    width: 58px; height: 58px; border-radius: 50%;
-    background: #25D366; display: flex; align-items: center; justify-content: center;
-    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.28);
-    transition: transform .2s ease, background .2s ease;
-  }
-  #waFloat:hover { transform: scale(1.07); background: #1ebe5b; }
-  #waFloat:focus-visible { outline: 3px solid #9d4300; outline-offset: 3px; }
-  @media (max-width: 767px) { #waFloat { right: 16px; bottom: 16px; width: 54px; height: 54px; } }
-</style>
 <a id="waFloat" href="https://wa.me/56942453871?text=Hola%20Josu%C3%A9%2C%20vengo%20de%20andotek.cl%20y%20me%20gustar%C3%ADa%20conversar%20sobre%20mi%20operaci%C3%B3n." target="_blank" rel="noopener" aria-label="Escríbenos por WhatsApp">
   <svg width="30" height="30" viewBox="0 0 24 24" fill="#ffffff" aria-hidden="true"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.297-.347.446-.52.149-.174.198-.298.297-.497.1-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
 </a>
@@ -889,7 +765,6 @@ document.getElementById('cfBtn').addEventListener('click', async () => {
 
     var barra = document.createElement('div');
     barra.className = 'riel-dots';
-    barra.style.cssText = 'display:flex;gap:6px;justify-content:center;margin-top:14px;';
     for (var i = 0; i < n; i++) {
       var p = document.createElement('span');
       p.style.cssText = 'width:6px;height:6px;border-radius:50%;background:#c7c6ca;transition:all .25s;';
