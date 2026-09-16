@@ -100,120 +100,48 @@ html.lenis body { height: auto; }
 /* ===========================================================
    4. MOVIL  (<= 767px)
    -----------------------------------------------------------
-   En telefono la pagina es un documento vertical, no un
-   carrusel de pantallas completas. Solo el hero ocupa la
-   pantalla; el resto mide lo que mide su contenido.
+   Criterio: lo minimo que garantiza que la pagina se lea bien
+   en telefono. Sin efectos, sin reacomodos complejos. Las
+   tarjetas se apilan una bajo otra, como en cualquier sitio.
    =========================================================== */
 @media (max-width: 767px) {
 
-  /* --- 4.1 Nada se desborda a lo ancho --- */
+  /* Nada puede salirse del ancho de la pantalla */
   html, body { overflow-x: hidden; }
-  img, svg { max-width: 100%; }
+  img, svg { max-width: 100%; height: auto; }
 
-  /* --- 4.2 Ritmo vertical --- */
-  /* El contenido se alinea arriba, no al centro: si una seccion es mas
-     alta que la pantalla, el centrado de flexbox la desborda hacia
-     arriba y el inicio queda inalcanzable bajo el header. */
+  /* El contenido se alinea arriba: si una seccion es mas alta que
+     la pantalla, el centrado de flexbox desborda hacia arriba y el
+     inicio queda inalcanzable bajo el header. */
   .full-section {
     min-height: 0;
     justify-content: flex-start;
-    padding-top: 48px;
-    padding-bottom: 48px;
+    padding-top: 96px;
+    padding-bottom: 56px;
   }
-  /* El hero si ocupa la pantalla, reservando el header (80px) */
-  #hero.full-section {
-    min-height: 100vh;
-    padding-top: 104px;
-    padding-bottom: 40px;
-  }
-  /* Al navegar por los enlaces, el header no tapa el titulo */
+  /* 80px del header fijo + aire, para que ningun titulo quede tapado */
   section[id] { scroll-margin-top: 80px; }
 
-  /* Margen lateral algo mas holgado que el minimo */
-  .px-margin-mobile { padding-left: 20px; padding-right: 20px; }
-
-  /* --- 4.3 Escala de titulares (el cuerpo ya esta en 16px) --- */
+  /* Titulares a escala de telefono */
   .text-headline-xl { font-size: 30px; line-height: 36px; }
   .text-headline-lg { font-size: 24px; line-height: 30px; }
 
-  /* --- 4.4 Hero: el dashboard tambien se ve en el telefono --- */
-  #heroVisual { margin-top: 28px; }
-
-  /* El panel deja de tener proporcion fija y crece con su contenido */
-  #heroVisual > div:first-child {
-    aspect-ratio: auto;
-    padding: 16px;
-  }
-  /* Los cuatro indicadores OEE pasan a dos por fila */
-  #heroVisual .grid-cols-4 { grid-template-columns: repeat(2, minmax(0, 1fr)); }
-  #heroVisual .grid-cols-4 span { font-size: 10px; }
-
-  /* El grafico es un SVG: sus medidas son del viewBox, asi que
-     el texto y el trazo se agrandan para compensar la escala. */
-  #heroVisual svg { height: 96px; }
-  #heroVisual svg text { font-size: 19px; }
-  #heroVisual svg path[stroke] { stroke-width: 3.5; }
-
-  /* El recuadro "+15 años" deja de flotar y pasa debajo */
-  #heroVisual > div:last-child {
-    position: static;
-    margin-top: 16px;
-    padding: 18px 20px;
-  }
-
-  /* --- 4.5 Tarjetas que se deslizan al costado --- */
-  #servGrid,
-  #testiGrid {
-    display: flex;
-    overflow-x: auto;
-    scroll-snap-type: x mandatory;
-    -webkit-overflow-scrolling: touch;
-    gap: 12px;
-    padding-bottom: 4px;
-    scrollbar-width: none;
-  }
-  #servGrid::-webkit-scrollbar,
-  #testiGrid::-webkit-scrollbar { display: none; }
-
-  /* Cada tarjeta ocupa el 85%: la siguiente asoma e invita a deslizar */
-  #servGrid > div,
-  #testiGrid > div {
-    flex: 0 0 85%;
-    scroll-snap-align: start;
-  }
-  #servGrid  > div { padding: 18px; }
-  #testiGrid > div { padding: 20px; }
+  /* Testimonios: legibles, uno bajo otro */
   #testiGrid p { font-size: 14px; line-height: 22px; }
   #testiGrid p + p { margin-top: 10px; }
   #testiGrid .font-label-sm { font-size: 12px; }
-  #testiGrid img { width: 46px; height: 46px; }
+  #testiGrid img { width: 48px; height: 48px; }
   #testiGrid > div > div:first-child { font-size: 30px; }
 
-  /* Puntos indicadores */
-  .riel-dots {
-    display: flex;
-    gap: 6px;
-    justify-content: center;
-    margin-top: 16px;
-  }
-
-  /* --- 4.6 Formulario --- */
-  /* La columna de datos y el formulario se separan menos que en escritorio */
-  #contacto .gap-16 { gap: 32px; }
   /* 16px es el minimo: bajo ese tamano Safari hace zoom al enfocar */
   #contactForm input,
-  #contactForm textarea {
-    font-size: 16px;
-    padding-top: 10px;
-    padding-bottom: 10px;
-  }
-  #contactForm label { font-size: 12px; }
+  #contactForm textarea { font-size: 16px; }
 
-  /* --- 4.7 Areas tactiles --- */
-  #mobile-menu a { display: block; padding: 12px 0; }
-
-  /* --- 4.8 Boton de WhatsApp: mas discreto, sin tapar contenido --- */
+  /* Boton de WhatsApp: mas discreto y sin tapar el pie */
   #waFloat { width: 48px; height: 48px; right: 16px; bottom: 16px; }
   #waFloat svg { width: 25px; height: 25px; }
   footer { padding-bottom: 76px; }
+
+  /* Area tactil comoda en el menu */
+  #mobile-menu a { display: block; padding: 12px 0; }
 }
