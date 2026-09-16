@@ -11,6 +11,7 @@
      2. Componentes — piezas con estilo propio
      3. Escritorio  — solo >= 768px
      4. Movil       — solo <= 767px
+     4b. Movil angosto — solo <= 380px
 
    Regla: cada propiedad se define UNA sola vez por capa.
    =========================================================== */
@@ -139,8 +140,12 @@ html.lenis body { height: auto; }
     padding-top: 56px;
     padding-bottom: 48px;
   }
-  /* El hero arranca justo bajo el header fijo (80px) */
-  #hero.full-section { padding-top: 96px; }
+  /* El hero arranca justo bajo el header fijo (80px) y se ajusta para
+     caber entero en la primera pantalla, dashboard incluido. */
+  #hero.full-section { padding-top: 88px; padding-bottom: 24px; }
+  #hero .sec-inner { padding-top: 16px; padding-bottom: 16px; }
+  /* Ritmo vertical del bloque de texto, a escala de telefono */
+  #hero .space-y-6 > * + * { margin-top: 16px; }
   /* 80px del header fijo + aire, para que ningun titulo quede tapado */
   section[id] { scroll-margin-top: 80px; }
 
@@ -179,13 +184,27 @@ html.lenis body { height: auto; }
   #servGrid { gap: 10px; }
 
   /* El CTA del hero se oculta: la barra inferior fija ya lo ofrece
-     siempre, y asi el dashboard cabe completo en la primera pantalla. */
+     siempre, y asi el dashboard cabe completo en la primera pantalla.
+     Se retira tambien su envoltorio, que si no deja un hueco vacio. */
   .ctaHero { display: none; }
+  #hero .fade-in-delay-4 { display: none; }
 
-  /* Dashboard del hero: altura natural y contenido compacto */
-  #heroVisual { margin-top: 20px; }
+  /* Dashboard del hero: altura natural y contenido compacto.
+     La separacion con el texto ya la da el gap de la grilla. */
   #heroVisual > div:first-child { aspect-ratio: auto; padding: 16px; }
   #heroVisual .grid-cols-4 { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  /* Encabezado del panel: el rotulo y el chip caben en una sola linea
+     incluso en pantallas de 360px, ajustando el espaciado entre letras. */
+  #heroVisual > div:first-child > div:first-child > span {
+    white-space: nowrap;
+    letter-spacing: .02em;
+  }
+  #lineChip {
+    flex: none;
+    white-space: nowrap;
+    padding: 4px 8px;
+  }
+  #lineChip span:last-child { letter-spacing: .04em; }
   /* El contenedor del grafico usa flex-1: sin proporcion fija se queda
      sin alto, asi que se le da uno explicito. */
   #heroVisual .flex-1 { min-height: 92px; }
@@ -201,16 +220,23 @@ html.lenis body { height: auto; }
   .text-headline-xl { font-size: 30px; line-height: 36px; }
   .text-headline-lg { font-size: 24px; line-height: 30px; }
 
-  /* Testimonios: legibles, uno bajo otro */
-  #testiGrid p { font-size: 14px; line-height: 22px; }
+  /* Cuerpo minimo 16px en telefono. El compilado baja varios bloques a
+     13, 14 o 15px mediante clases sueltas (text-[13px] y similares);
+     aqui se devuelven al tamano de lectura, con su interlineado. */
+  p.font-body-md { font-size: 16px; line-height: 26px; }
+  #cfError { font-size: 16px; line-height: 24px; }
+
+  /* Testimonios: legibles, uno bajo otro. Las citas son parrafos dentro
+     de un contenedor que fija 13px, asi que heredan y hay que subirlas. */
+  #testiGrid p { font-size: 16px; line-height: 26px; }
   #testiGrid p + p { margin-top: 10px; }
-  #testiGrid .font-label-sm { font-size: 12px; }
+  #testiGrid .font-label-sm { font-size: 12px; line-height: 18px; }
   #testiGrid img { width: 48px; height: 48px; }
   #testiGrid > div > div:first-child { font-size: 30px; }
 
   /* 16px es el minimo: bajo ese tamano Safari hace zoom al enfocar */
   #contactForm input,
-  #contactForm textarea { font-size: 16px; }
+  #contactForm textarea { font-size: 16px; min-height: 44px; }
 
   /* En telefono el boton redondo se reemplaza por una barra fija:
      no tapa contenido y deja el CTA principal siempre a mano. */
@@ -254,6 +280,38 @@ html.lenis body { height: auto; }
   /* Espacio para que la barra no tape el final de la pagina */
   footer { padding-bottom: 84px; }
 
-  /* Area tactil comoda en el menu */
-  #mobile-menu a { display: block; padding: 12px 0; }
+  /* --- Areas tactiles: 44px de alto minimo en todo lo que se toca ---
+     El dedo necesita blanco alrededor: los enlaces de una sola linea
+     miden 16 a 30px y se centran dentro de una caja de 44px. */
+  header nav > a,
+  #mobile-menu a,
+  footer a,
+  #quien a[href*="linkedin.com"],
+  #contacto a[href^="mailto:"],
+  #contacto a[href*="wa.me"] {
+    display: flex;
+    align-items: center;
+    min-height: 44px;
+  }
+  /* El boton de menu crece hacia la izquierda: el icono no se mueve */
+  header nav > button {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    min-width: 44px;
+    min-height: 44px;
+  }
+  /* Con cajas de 44px la separacion propia del footer sobra */
+  footer .flex.flex-col { gap: 4px; }
+}
+
+
+/* -----------------------------------------------------------
+   4b. MOVIL ANGOSTO  (<= 380px)
+   Parte de la capa movil. En pantallas de 360px o menos la
+   bajada del hero pasa a tres lineas y el dashboard deja de
+   caber en la primera pantalla: se lee en 16px, el minimo.
+   ----------------------------------------------------------- */
+@media (max-width: 380px) {
+  #hero .text-body-lg { font-size: 16px; line-height: 26px; }
 }
