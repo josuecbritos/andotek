@@ -63,14 +63,27 @@ html.lenis body { height: auto; }
 #waFloat:hover { transform: scale(1.07); background: #1ebe5b; }
 #waFloat:focus-visible { outline: 3px solid #9d4300; outline-offset: 3px; }
 
+/* --- Barra de accion inferior (solo telefono) --- */
+#barraMovil { display: none; }
+
 /* --- Elevacion al pasar el cursor (solo con mouse) --- */
 @media (hover: hover) {
   .lift { transition: transform .2s ease, box-shadow .2s ease, border-color .2s ease; }
   .lift:hover { transform: translateY(-2px); box-shadow: 0 8px 24px rgba(0, 0, 0, .08); }
 }
 
-/* --- Puntos indicadores de los rieles deslizables (movil) --- */
-.riel-dots { display: none; }
+/* --- Acordeon nativo (<details>) ---
+   Se usa en Servicios y Experiencia. En escritorio queda siempre
+   abierto y no se puede plegar; en telefono se pliega para que la
+   seccion quepa en pantalla. Sin JavaScript: si algo falla, el
+   contenido simplemente queda visible. */
+.acc > summary {
+  display: flex;          /* no depender solo de la clase de Tailwind */
+  list-style: none;
+  cursor: default;
+}
+.acc > summary::-webkit-details-marker { display: none; }
+.acc > summary::marker { content: ""; }
 
 
 /* ===========================================================
@@ -81,6 +94,13 @@ html.lenis body { height: auto; }
   /* El header es fijo y mide 80px: cada seccion reserva ese
      espacio para que su contenido nunca quede tapado. */
   .full-section { padding-top: 80px; }
+
+  /* Acordeon: en escritorio siempre desplegado y no plegable */
+  .acc > summary { pointer-events: none; }
+  #servGrid .acc > summary { padding: 20px 24px 0; }
+  #servGrid .acc > .acc-body { padding: 4px 24px 20px 68px; }
+  .acc-exp > summary { padding: 24px 16px 0; }
+  .acc-exp > .acc-body { padding: 8px 16px 24px; }
 
   /* Quienes somos */
   #fotoJosue { width: 270px; }
@@ -122,6 +142,40 @@ html.lenis body { height: auto; }
   /* 80px del header fijo + aire, para que ningun titulo quede tapado */
   section[id] { scroll-margin-top: 80px; }
 
+  /* --- Acordeon: en telefono si se pliega --- */
+  .acc > summary {
+    pointer-events: auto;
+    cursor: pointer;
+    position: relative;
+    padding: 16px 44px 16px 18px;
+    -webkit-tap-highlight-color: transparent;
+  }
+  .acc > .acc-body { padding: 0 18px 18px; }
+  #servGrid .acc > .acc-body { padding-left: 62px; }
+
+  /* Indicador: una flecha que gira al desplegar */
+  .acc > summary::after {
+    content: "";
+    position: absolute;
+    right: 18px;
+    top: 50%;
+    width: 8px;
+    height: 8px;
+    margin-top: -6px;
+    border-right: 2px solid #9d4300;
+    border-bottom: 2px solid #9d4300;
+    transform: rotate(45deg);
+    transition: transform .2s ease;
+  }
+  .acc[open] > summary::after {
+    transform: rotate(-135deg);
+    margin-top: -2px;
+  }
+  .acc-exp > summary::after { border-color: #fd761a; }
+
+  /* Los servicios quedan mas juntos al estar plegados */
+  #servGrid { gap: 10px; }
+
   /* Titulares a escala de telefono */
   .text-headline-xl { font-size: 30px; line-height: 36px; }
   .text-headline-lg { font-size: 24px; line-height: 30px; }
@@ -137,10 +191,47 @@ html.lenis body { height: auto; }
   #contactForm input,
   #contactForm textarea { font-size: 16px; }
 
-  /* Boton de WhatsApp: mas discreto y sin tapar el pie */
-  #waFloat { width: 48px; height: 48px; right: 16px; bottom: 16px; }
-  #waFloat svg { width: 25px; height: 25px; }
-  footer { padding-bottom: 76px; }
+  /* En telefono el boton redondo se reemplaza por una barra fija:
+     no tapa contenido y deja el CTA principal siempre a mano. */
+  #waFloat { display: none; }
+
+  #barraMovil {
+    display: flex;
+    position: fixed;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 60;
+    gap: 10px;
+    padding: 10px 16px calc(10px + env(safe-area-inset-bottom));
+    background: rgba(249, 249, 250, .96);
+    border-top: 1px solid #c7c6ca;
+  }
+  #barraCta {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 46px;
+    background: #000;
+    color: #fff;
+    font-family: "JetBrains Mono", monospace;
+    font-size: 12px;
+    letter-spacing: .14em;
+    text-transform: uppercase;
+  }
+  #barraWa {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 46px;
+    min-height: 46px;
+    background: #25D366;
+    flex: none;
+  }
+
+  /* Espacio para que la barra no tape el final de la pagina */
+  footer { padding-bottom: 84px; }
 
   /* Area tactil comoda en el menu */
   #mobile-menu a { display: block; padding: 12px 0; }
