@@ -103,13 +103,13 @@
                 Creamos herramientas digitales que se adaptan a tu operación, no al revés.
             </p>
             <div class="pt-2 fade-in fade-in-delay-4">
-                <a class="inline-flex items-center gap-4 px-10 py-4 bg-primary text-on-primary font-label-md text-label-md uppercase tracking-[0.2em] hover:bg-on-primary-fixed-variant transition-all group" href="#contacto">
+                <a class="inline-flex items-center gap-4 px-10 py-4 bg-primary text-on-primary font-label-md text-label-md uppercase tracking-[0.2em] hover:bg-on-primary-fixed-variant transition-all group ctaHero" href="#contacto">
                     Conversemos
                     <span class="material-symbols-outlined group-hover:translate-x-1 transition-transform">arrow_forward</span>
                 </a>
             </div>
         </div>
-        <div class="relative hidden md:block" id="heroVisual">
+        <div class="relative" id="heroVisual">
             <div data-drift="-26" class="aspect-[4/3] overflow-hidden border border-outline-variant rounded-lg p-6 flex flex-col" style="background: #111113;">
                 <!-- Panel header -->
                 <div class="flex items-center justify-between mb-4">
@@ -773,7 +773,7 @@ document.getElementById('cfBtn').addEventListener('click', async () => {
       if (!cont) continue;
       var items = cont.querySelectorAll('details.acc');
       for (var i = 0; i < items.length; i++) {
-        items[i].open = movil.matches ? (i === 0) : true;
+        items[i].open = movil.matches ? false : true;
       }
     }
   }
